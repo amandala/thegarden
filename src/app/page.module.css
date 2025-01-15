@@ -68,10 +68,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -165,4 +162,21 @@ a.secondary {
   .logo {
     filter: invert();
   }
+}
+
+.plantGrid {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  grid-auto-flow: column;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.plant {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
 }
