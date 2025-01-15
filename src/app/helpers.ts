@@ -74,7 +74,6 @@ export const getJan11Plants = () => {
       name: "Rainbow Chard",
       datePlanted: new Date(2025, 0, 11),
       cell: "3A",
-      dateSprouted: new Date(2025, 0, 14),
     })
   );
 
@@ -83,7 +82,6 @@ export const getJan11Plants = () => {
       name: "Rainbow Kale",
       datePlanted: new Date(2025, 0, 11),
       cell: "3B",
-      dateSprouted: new Date(2025, 0, 14),
     })
   );
 
@@ -93,7 +91,6 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "3C",
       variant: "Bibb",
-      dateSprouted: new Date(2025, 0, 14),
     })
   );
 
@@ -103,7 +100,6 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "3D",
       variant: "Gourmet Leaf",
-      dateSprouted: new Date(2025, 0, 14),
     })
   );
 
@@ -129,7 +125,6 @@ export const getJan11Plants = () => {
       name: "Pac Choi",
       datePlanted: new Date(2025, 0, 11),
       cell: "4C",
-      dateSprouted: new Date(2025, 0, 14),
     })
   );
 
@@ -141,7 +136,7 @@ export const getJan11Plants = () => {
     })
   );
 
-  return tray.getPlants();
+  return tray;
 };
 
 export const daysBetween = (date1: Date, date2: Date) => {

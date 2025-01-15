@@ -1,3 +1,5 @@
+import { SproutEvent } from "./types";
+
 export class Plant {
   readonly name: string;
   public datePlanted: Date;
@@ -62,8 +64,14 @@ export class PlantingTray {
     return this.plantings;
   }
 
-  public setCellSprouted(cell: string, dateSprouted: Date) {
+  private setCellSprouted(cell: string, dateSprouted: Date) {
     const plant = this.getPlantByCell(cell);
     plant?.setSproutDate(dateSprouted);
+  }
+
+  public recordSprouts(sproutEvents: Array<SproutEvent>) {
+    sproutEvents.forEach((e) => {
+      this.setCellSprouted(e.cell, e.dateSprouted);
+    });
   }
 }

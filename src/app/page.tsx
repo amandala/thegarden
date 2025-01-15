@@ -1,16 +1,19 @@
 // import Image from "next/image";
+import { jan14Events } from "./events";
 import { daysBetween, getJan11Plants } from "./helpers";
 import styles from "./page.module.css";
 
 export default function Home() {
   const plants = getJan11Plants();
 
+  plants.recordSprouts(jan14Events);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>Welcome to The Garden</h1>
         <div className={styles.plantGrid}>
-          {plants.map((plant) => (
+          {plants.getPlants().map((plant) => (
             <div
               className={styles.plant}
               key={`${plant.name.toString()}${plant.datePlanted.getDate()}${plant.variant?.toString()}`}
