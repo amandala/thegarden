@@ -180,3 +180,10 @@ a.secondary {
   border-radius: 10px;
   padding: 20px;
 }
+
+@media (prefers-color-scheme: light) {
+  .plantGrid,
+  .plant {
+    border-color: black;
+  }
+}

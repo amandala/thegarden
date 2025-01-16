@@ -1,6 +1,8 @@
 // import Image from "next/image";
+
 import { jan14Events } from "./events";
 import { daysBetween, getJan11Plants } from "./helpers";
+
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -11,17 +13,17 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1>Welcome to The Garden</h1>
+        <h1>Welcome to The Garden </h1>
         <div className={styles.plantGrid}>
           {plants.getPlants().map((plant) => (
             <div
               className={styles.plant}
               key={`${plant.name.toString()}${plant.datePlanted.getDate()}${plant.variant?.toString()}`}
             >
-              <h2>
+              <h3>
                 {plant.variant?.toString()} {plant.name.toString()}
                 {plant.dateSprouted ? "  🌱" : null}
-              </h2>
+              </h3>
               <p> Planted {plant.datePlanted.toLocaleDateString()}</p>
               {plant.dateSprouted ? (
                 <p>
