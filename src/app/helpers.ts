@@ -7,6 +7,10 @@ export const getJan11Plants = () => {
       name: "Oregano",
       datePlanted: new Date(2025, 0, 11),
       cell: "1A",
+      germinationTimeframe: {
+        rangeStartDays: 7,
+        rangeEndDays: 21,
+      },
     })
   );
 
@@ -15,6 +19,10 @@ export const getJan11Plants = () => {
       name: "Rosemary",
       datePlanted: new Date(2025, 0, 11),
       cell: "1B",
+      germinationTimeframe: {
+        rangeStartDays: 7,
+        rangeEndDays: 28,
+      },
     })
   );
 
@@ -23,6 +31,10 @@ export const getJan11Plants = () => {
       name: "Basil",
       datePlanted: new Date(2025, 0, 11),
       cell: "1C",
+      germinationTimeframe: {
+        rangeStartDays: 7,
+        rangeEndDays: 21,
+      },
     })
   );
 
@@ -31,6 +43,10 @@ export const getJan11Plants = () => {
       name: "Thyme",
       datePlanted: new Date(2025, 0, 11),
       cell: "1D",
+      germinationTimeframe: {
+        rangeStartDays: 7,
+        rangeEndDays: 21,
+      },
     })
   );
 
@@ -40,6 +56,10 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "2A",
       variant: "Orange",
+      germinationTimeframe: {
+        rangeStartDays: 10,
+        rangeEndDays: 12,
+      },
     })
   );
 
@@ -49,6 +69,10 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "2B",
       variant: "Black Magic",
+      germinationTimeframe: {
+        rangeStartDays: 8,
+        rangeEndDays: 18,
+      },
     })
   );
 
@@ -57,6 +81,10 @@ export const getJan11Plants = () => {
       name: "Habanero Pepper",
       datePlanted: new Date(2025, 0, 11),
       cell: "2C",
+      germinationTimeframe: {
+        rangeStartDays: 10,
+        rangeEndDays: 12,
+      },
     })
   );
 
@@ -66,6 +94,10 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "2D",
       variant: "Yellow Pear",
+      germinationTimeframe: {
+        rangeStartDays: 7,
+        rangeEndDays: 14,
+      },
     })
   );
 
@@ -117,6 +149,10 @@ export const getJan11Plants = () => {
       datePlanted: new Date(2025, 0, 11),
       cell: "4B",
       variant: "Bush",
+      germinationTimeframe: {
+        rangeStartDays: 6,
+        rangeEndDays: 14,
+      },
     })
   );
 
@@ -125,6 +161,10 @@ export const getJan11Plants = () => {
       name: "Pac Choi",
       datePlanted: new Date(2025, 0, 11),
       cell: "4C",
+      germinationTimeframe: {
+        rangeStartDays: 5,
+        rangeEndDays: 10,
+      },
     })
   );
 
@@ -145,4 +185,14 @@ export const daysBetween = (date1: Date, date2: Date) => {
   const aDayInMs = 24 * 60 * 60 * 1000;
 
   return Math.round(millisecondsDiff / aDayInMs);
+};
+
+export const dateInFuture = (startDate: Date, daysToAdd: number) => {
+  const date = new Date(startDate.valueOf());
+  date.setDate(date.getDate() + daysToAdd);
+  return date;
+};
+
+export const getPrettyGermDate = (date: Date) => {
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
