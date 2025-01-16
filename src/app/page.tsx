@@ -24,6 +24,7 @@ export default function Home() {
                 {plant.variant?.toString()} {plant.name.toString()}
                 {plant.dateSprouted ? "  🌱" : null}
               </h3>
+              <h4 className={styles.Cell}>Cell: {plant.cell}</h4>
               <p> Planted {plant.datePlanted.toLocaleDateString()}</p>
               {plant.dateSprouted ? (
                 <p>
