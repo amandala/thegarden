@@ -6,6 +6,7 @@ import {
 } from "./types";
 
 export class Plant {
+  readonly key: string;
   readonly name: string;
   datePlanted: Date;
   cell?: string;
@@ -32,6 +33,7 @@ export class Plant {
       rangeEndDays: number;
     };
   }) {
+    this.key = this.getRandomInt().toString();
     this.name = name;
     this.datePlanted = datePlanted;
     this.cell = cell;
@@ -47,6 +49,10 @@ export class Plant {
       this.germinationDates =
         this.calculateGerminationTimeframe(germinationTimeframe);
     }
+  }
+
+  private getRandomInt() {
+    return Math.floor(Math.random() * 1000);
   }
 
   public setPlantedDate(datePlanted: Date) {

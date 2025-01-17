@@ -46,7 +46,7 @@ export const Plant = ({ plant }: { plant: PlantType }) => {
         className={cx(styles.Plant, {
           [styles.PlantSprouted]: plant.dateSprouted,
         })}
-        key={`${plant.name.toString()}${plant.datePlanted.getDate()}${plant.variant?.toString()}`}
+        key={plant.key}
       >
         <h3 className={styles.Name}>
           {plant.variant?.toString()} {plant.name.toString()}
