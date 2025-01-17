@@ -193,6 +193,6 @@ export const dateInFuture = (startDate: Date, daysToAdd: number) => {
   return date;
 };
 
-export const getPrettyGermDate = (date: Date) => {
+export const getPrettyDate = (date: Date) => {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };

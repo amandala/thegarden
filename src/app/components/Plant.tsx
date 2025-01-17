@@ -1,5 +1,5 @@
 import { Plant as PlantType } from "../classes";
-import { daysBetween, getPrettyGermDate } from "../helpers";
+import { daysBetween, getPrettyDate } from "../helpers";
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
@@ -9,15 +9,7 @@ import cx from "classnames";
 import styles from "./Plant.module.css";
 
 const PlantedDate = ({ date }: { date: Date }) => {
-  return (
-    <p className={styles.PlantedDate}>
-      Planted
-      {date.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-      })}
-    </p>
-  );
+  return <p className={styles.PlantedDate}>Planted {getPrettyDate(date)}</p>;
 };
 
 const SproutedDate = ({
@@ -39,8 +31,8 @@ const GerminationDates = ({
 }) => {
   return (
     <p>
-      {`⏳ ${getPrettyGermDate(germDates.startDate)} - 
-      ${getPrettyGermDate(germDates.endDate)} (${germDays?.rangeStartDays} - ${
+      {`⏳ ${getPrettyDate(germDates.startDate)} - 
+      ${getPrettyDate(germDates.endDate)} (${germDays?.rangeStartDays} - ${
         germDays?.rangeEndDays
       } days)`}
     </p>
