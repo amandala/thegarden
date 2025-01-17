@@ -47,8 +47,6 @@ const GerminationDates = ({
 };
 
 export const Plant = ({ plant }: { plant: PlantType }) => {
-  const germDates = plant.calculateGerminationTimeframe();
-
   return (
     <div>
       <div
@@ -67,9 +65,9 @@ export const Plant = ({ plant }: { plant: PlantType }) => {
             sprouted={plant.dateSprouted}
           />
         )}
-        {germDates.startDate && germDates.endDate && !plant.dateSprouted && (
+        {plant.germinationDates && !plant.dateSprouted && (
           <GerminationDates
-            germDates={germDates}
+            germDates={plant.germinationDates}
             germDays={plant.germinationTimeframe}
           />
         )}

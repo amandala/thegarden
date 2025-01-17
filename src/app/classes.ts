@@ -1,5 +1,9 @@
 import { dateInFuture } from "./helpers";
-import { GerminationTimeframeDates, SproutEvent } from "./types";
+import {
+  GerminationTimeframeDates,
+  GerminationTimeframeNumDays,
+  SproutEvent,
+} from "./types";
 
 export class Plant {
   readonly name: string;
@@ -7,11 +11,8 @@ export class Plant {
   cell?: string;
   variant?: string;
   dateSprouted?: Date;
-  germinationTimeframe?: {
-    // TODO: use this to calculate germination date range based on planting date
-    rangeStartDays?: number;
-    rangeEndDays?: number;
-  };
+  germinationTimeframe?: GerminationTimeframeNumDays;
+  germinationDates?: GerminationTimeframeDates;
 
   constructor({
     name,
@@ -27,8 +28,8 @@ export class Plant {
     variant?: string;
     dateSprouted?: Date;
     germinationTimeframe?: {
-      rangeStartDays?: number;
-      rangeEndDays?: number;
+      rangeStartDays: number;
+      rangeEndDays: number;
     };
   }) {
     this.name = name;
@@ -36,10 +37,16 @@ export class Plant {
     this.cell = cell;
     this.variant = variant;
     this.dateSprouted = dateSprouted;
-    this.germinationTimeframe = {
-      rangeStartDays: germinationTimeframe?.rangeStartDays || undefined,
-      rangeEndDays: germinationTimeframe?.rangeEndDays || undefined,
-    };
+
+    if (germinationTimeframe) {
+      this.germinationTimeframe = {
+        rangeStartDays: germinationTimeframe.rangeStartDays,
+        rangeEndDays: germinationTimeframe.rangeEndDays,
+      };
+
+      this.germinationDates =
+        this.calculateGerminationTimeframe(germinationTimeframe);
+    }
   }
 
   public setPlantedDate(datePlanted: Date) {
@@ -54,20 +61,18 @@ export class Plant {
     this.dateSprouted = dateSprouted;
   }
 
-  public calculateGerminationTimeframe = (): GerminationTimeframeDates => {
+  public calculateGerminationTimeframe = (
+    germinationTimeframe: GerminationTimeframeNumDays
+  ): GerminationTimeframeDates => {
     return {
-      startDate: this.germinationTimeframe?.rangeStartDays
-        ? dateInFuture(
-            this.getPlantedDate(),
-            this.germinationTimeframe?.rangeStartDays
-          )
-        : undefined,
-      endDate: this.germinationTimeframe?.rangeEndDays
-        ? dateInFuture(
-            this.getPlantedDate(),
-            this.germinationTimeframe?.rangeEndDays
-          )
-        : undefined,
+      startDate: dateInFuture(
+        this.getPlantedDate(),
+        germinationTimeframe.rangeStartDays
+      ),
+      endDate: dateInFuture(
+        this.getPlantedDate(),
+        germinationTimeframe.rangeEndDays
+      ),
     };
   };
 }

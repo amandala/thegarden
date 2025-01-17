@@ -9,8 +9,8 @@ export type GerminationTimeframeDates = {
 };
 
 export type GerminationTimeframeNumDays = {
-  rangeStartDays?: number;
-  rangeEndDays?: number;
+  rangeStartDays: number;
+  rangeEndDays: number;
 };
 
 export type PlantInfo = {
