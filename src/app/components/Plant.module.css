@@ -4,10 +4,6 @@
   padding: 20px;
 }
 
-.PlantSprouted {
-  border-color: #63ae12;
-}
-
 .Cell {
   display: block;
 }
@@ -22,9 +18,14 @@
 }
 
 @media (prefers-color-scheme: light) {
-  .plant {
+  .Plant {
     border-color: black;
   }
+}
+
+.PlantSprouted {
+  border-color: #63ae12;
+  border-width: 3px;
 }
 
 @media screen and (min-width: 750px) {
