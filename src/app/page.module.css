@@ -174,28 +174,13 @@ a.secondary {
   padding: 20px;
 }
 
-.plant {
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 20px;
-}
-
 @media (prefers-color-scheme: light) {
-  .plantGrid,
-  .plant {
+  .plantGrid {
     border-color: black;
   }
 }
 
-.Cell {
-  display: block;
-}
-
 @media screen and (min-width: 750px) {
-  .Cell {
-    display: none;
-  }
-
   .plantGrid {
     display: grid;
     grid-template-rows: repeat(4, 1fr);

@@ -1,0 +1,21 @@
+.Plant {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.Cell {
+  display: block;
+}
+
+@media (prefers-color-scheme: light) {
+  .plant {
+    border-color: black;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .Cell {
+    display: none;
+  }
+}
