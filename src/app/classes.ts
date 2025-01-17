@@ -84,8 +84,14 @@ export class PlantingTray {
     this.plantings = [];
   }
 
-  private getPlantByCell(cell: string): Plant | undefined {
+  public getPlantByCell(cell: string): Plant | undefined {
     return this.plantings.find((planting) => planting.cell === cell);
+  }
+
+  private setCellSprouted(cell: string, dateSprouted: Date) {
+    const plant = this.getPlantByCell(cell);
+    if (plant) plant.setSproutDate(dateSprouted);
+    else throw new Error(`Unable to find plant at ${cell}`);
   }
 
   public plantSeed(plant: Plant) {
@@ -94,11 +100,6 @@ export class PlantingTray {
 
   public getPlants() {
     return this.plantings;
-  }
-
-  private setCellSprouted(cell: string, dateSprouted: Date) {
-    const plant = this.getPlantByCell(cell);
-    plant?.setSproutDate(dateSprouted);
   }
 
   public recordSprouts(sproutEvents: Array<SproutEvent>) {

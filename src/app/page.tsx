@@ -1,7 +1,7 @@
 // import Image from "next/image";
 
 import { Plant } from "./components/Plant";
-import { jan14Events } from "./events";
+import { sproutEvents } from "./events";
 import { getJan11Plants } from "./helpers";
 
 import styles from "./page.module.css";
@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 export default function Home() {
   const plants = getJan11Plants();
 
-  plants.recordSprouts(jan14Events);
+  plants.recordSprouts(sproutEvents);
 
   return (
     <div className={styles.page}>

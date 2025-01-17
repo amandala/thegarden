@@ -1,6 +1,6 @@
 import { SproutEvent } from "./types";
 
-export const jan14Events: Array<SproutEvent> = [
+export const sproutEvents: Array<SproutEvent> = [
   {
     cell: "3A",
     dateSprouted: new Date(2025, 0, 14),
