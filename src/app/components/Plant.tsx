@@ -1,4 +1,4 @@
-import { Plant as PlantType } from "../classes";
+import { Plant } from "../classes";
 import { daysBetween, getPrettyDate } from "../helpers";
 import {
   GerminationTimeframeDates,
@@ -39,7 +39,7 @@ const GerminationDates = ({
   );
 };
 
-export const Plant = ({ plant }: { plant: PlantType }) => {
+export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
     <div>
       <div

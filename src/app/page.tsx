@@ -1,6 +1,6 @@
 // import Image from "next/image";
 
-import { Plant } from "./components/Plant";
+import { PlantCell } from "./components/Plant";
 import { sproutEvents } from "./events";
 import { getJan11Plants } from "./helpers";
 
@@ -17,7 +17,7 @@ export default function Home() {
         <h1>Welcome to The Garden </h1>
         <div className={styles.plantGrid}>
           {plants.getPlants().map((plant) => (
-            <Plant key={`${plant.cell}`} plant={plant} />
+            <PlantCell key={`${plant.cell}`} plant={plant} />
           ))}
         </div>
       </main>
