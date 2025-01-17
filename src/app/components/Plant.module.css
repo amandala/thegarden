@@ -4,8 +4,21 @@
   padding: 20px;
 }
 
+.PlantSprouted {
+  border-color: #63ae12;
+}
+
 .Cell {
   display: block;
+}
+
+.Name {
+  margin-bottom: 8px;
+}
+
+.Cell,
+.PlantedDate {
+  margin-bottom: 4px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -17,5 +30,9 @@
 @media screen and (min-width: 750px) {
   .Cell {
     display: none;
+  }
+
+  .Plant {
+    height: 100%;
   }
 }

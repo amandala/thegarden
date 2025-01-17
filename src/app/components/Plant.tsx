@@ -4,12 +4,13 @@ import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
 } from "../types";
+import cx from "classnames";
 
 import styles from "./Plant.module.css";
 
 const PlantedDate = ({ date }: { date: Date }) => {
   return (
-    <p>
+    <p className={styles.PlantedDate}>
       Planted
       {date.toLocaleDateString("en-US", {
         month: "short",
@@ -26,7 +27,7 @@ const SproutedDate = ({
   planted: Date;
   sprouted: Date;
 }) => {
-  return <p>Sprouted in {daysBetween(planted, sprouted)} days</p>;
+  return <p>🌱 Sprouted in {daysBetween(planted, sprouted)} days</p>;
 };
 
 const GerminationDates = ({
@@ -50,12 +51,13 @@ export const Plant = ({ plant }: { plant: PlantType }) => {
   return (
     <div>
       <div
-        className={styles.Plant}
+        className={cx(styles.Plant, {
+          [styles.PlantSprouted]: plant.dateSprouted,
+        })}
         key={`${plant.name.toString()}${plant.datePlanted.getDate()}${plant.variant?.toString()}`}
       >
-        <h3>
+        <h3 className={styles.Name}>
           {plant.variant?.toString()} {plant.name.toString()}
-          {plant.dateSprouted ? "  🌱" : null}
         </h3>
         <h4 className={styles.Cell}>Cell: {plant.cell}</h4>
         <PlantedDate date={plant.datePlanted} />
