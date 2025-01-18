@@ -94,6 +94,10 @@ export class PlantingTray {
     return this.plantings.find((planting) => planting.cell === cell);
   }
 
+  public getPlantById(id: string): Plant | undefined {
+    return this.plantings.find((planting) => planting.key === id);
+  }
+
   private setCellSprouted(cell: string, dateSprouted: Date) {
     const plant = this.getPlantByCell(cell);
     if (plant) plant.setSproutDate(dateSprouted);

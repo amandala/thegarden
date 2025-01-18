@@ -7,6 +7,7 @@ import {
 import cx from "classnames";
 
 import styles from "./Plant.module.css";
+import Link from "next/link";
 
 const PlantedDate = ({ date }: { date: Date }) => {
   return <p className={styles.PlantedDate}>Planted {getPrettyDate(date)}</p>;
@@ -41,7 +42,7 @@ const GerminationDates = ({
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
-    <div>
+    <Link href={`/plant/${plant.key}`}>
       <div
         className={cx(styles.Plant, {
           [styles.PlantSprouted]: plant.dateSprouted,
@@ -66,6 +67,6 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
           />
         )}
       </div>
-    </div>
+    </Link>
   );
 };

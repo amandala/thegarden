@@ -163,27 +163,3 @@ a.secondary {
     filter: invert();
   }
 }
-
-.plantGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  grid-auto-flow: column;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-@media (prefers-color-scheme: light) {
-  .plantGrid {
-    border-color: black;
-  }
-}
-
-@media screen and (min-width: 750px) {
-  .plantGrid {
-    display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
