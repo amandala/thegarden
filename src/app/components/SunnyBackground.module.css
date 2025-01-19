@@ -27,10 +27,57 @@
   left: 50%;
   width: 100px;
   height: 100px;
-  background: white;
+  background: radial-gradient(circle, #b0b0b0 60%, #808080 100%);
   border-radius: 50%;
   box-shadow: 0 0 50px white;
   animation: move-moon 60s linear infinite;
+  overflow: hidden;
+}
+
+.moon::before,
+.moon::after,
+.moon .crater1,
+.moon .crater2,
+.moon .crater3 {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #a0a0a0;
+}
+
+.moon::before {
+  width: 20px;
+  height: 20px;
+  top: 20%;
+  left: 30%;
+}
+
+.moon::after {
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  left: 60%;
+}
+
+.moon .crater1 {
+  width: 10px;
+  height: 10px;
+  top: 40%;
+  left: 20%;
+}
+
+.moon .crater2 {
+  width: 8px;
+  height: 8px;
+  top: 60%;
+  left: 40%;
+}
+
+.moon .crater3 {
+  width: 12px;
+  height: 12px;
+  top: 30%;
+  left: 70%;
 }
 
 @keyframes move-sun {
@@ -98,6 +145,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  .sunnyBackground {
+    background: linear-gradient(to bottom, #2c3e50, #1c2833);
+  }
+
   .sun {
     display: none;
   }
