@@ -179,14 +179,6 @@ export const getJan11Plants = () => {
   return tray;
 };
 
-export const daysBetween = (date1: Date, date2: Date) => {
-  const millisecondsDiff = date2.getTime() - date1.getTime();
-
-  const aDayInMs = 24 * 60 * 60 * 1000;
-
-  return Math.round(millisecondsDiff / aDayInMs);
-};
-
 export const dateInFuture = (startDate: Date, daysToAdd: number) => {
   const date = new Date(startDate.valueOf());
   date.setDate(date.getDate() + daysToAdd);
@@ -194,5 +186,19 @@ export const dateInFuture = (startDate: Date, daysToAdd: number) => {
 };
 
 export const getPrettyDate = (date: Date) => {
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+};
+
+export const daysDifference = (date: Date, today: Date = new Date()) =>
+  Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+export const daysBetween = (date1: Date, date2: Date) => {
+  const millisecondsDiff = date2.getTime() - date1.getTime();
+
+  const aDayInMs = 24 * 60 * 60 * 1000;
+
+  return Math.round(millisecondsDiff / aDayInMs);
 };

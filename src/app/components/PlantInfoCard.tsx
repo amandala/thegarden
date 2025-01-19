@@ -7,9 +7,11 @@ import styles from "./PlantInfoCard.module.css";
 import {
   GerminationDates,
   GerminationNumDays,
+  PlantAge,
   PlantedDate,
   PlantLocation,
   SproutedDays,
+  SproutedOn,
 } from "./PlantInfoLines";
 
 export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
@@ -41,6 +43,12 @@ export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
         ) : null}
         {plant.germinationTimeframe ? (
           <GerminationNumDays germDays={plant.germinationTimeframe} />
+        ) : null}
+        {plant.dateSprouted ? (
+          <PlantAge daysAlive={plant.daysSinceSprouted()} />
+        ) : null}
+        {plant.dateSprouted ? (
+          <SproutedOn dateSprouted={plant.dateSprouted} />
         ) : null}
       </div>
     </div>

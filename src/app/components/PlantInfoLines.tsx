@@ -1,4 +1,5 @@
-import { daysBetween, getPrettyDate } from "../helpers";
+import { useEffect, useState } from "react";
+import { getPrettyDate, daysDifference, daysBetween } from "../helpers";
 
 import {
   GerminationTimeframeDates,
@@ -25,11 +26,26 @@ export const GerminationDates = ({
 }: {
   germDates: GerminationTimeframeDates;
 }) => {
+  const [startDateText, setStartDateText] = useState("");
+
+  useEffect(() => {
+    const today = new Date();
+    const daysDiff = daysDifference(germDates.startDate, today);
+
+    const text = (() => {
+      if (daysDiff === 0) return "today";
+      if (daysDiff === 1) return "tomorrow";
+      if (daysDiff === -1) return "yesterday";
+      if (daysDiff < 0) return `${Math.abs(daysDiff)} days ago`;
+      return getPrettyDate(germDates.startDate);
+    })();
+
+    setStartDateText(text);
+  }, [germDates.startDate]);
+
   return (
     <p>
-      Expected
-      {` ${getPrettyDate(germDates.startDate)} - 
-        ${getPrettyDate(germDates.endDate)}`}
+      Expected {startDateText} - {getPrettyDate(germDates.endDate)}
     </p>
   );
 };
@@ -58,4 +74,16 @@ export const PlantLocation = ({
   };
 
   return <p>Located in {locationMap[location]}</p>;
+};
+
+export const PlantAge = ({ daysAlive }: { daysAlive: number | undefined }) => {
+  if (daysAlive) {
+    return <p>Alive for {daysAlive !== undefined ? daysAlive : "N/A"} days</p>;
+  }
+
+  return null;
+};
+
+export const SproutedOn = ({ dateSprouted }: { dateSprouted: Date }) => {
+  return <p>Sprouted on {getPrettyDate(dateSprouted)}</p>;
 };

@@ -1,4 +1,4 @@
-import { dateInFuture } from "./helpers";
+import { dateInFuture, daysBetween } from "./helpers";
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
@@ -80,6 +80,11 @@ export class Plant {
       ),
     };
   };
+
+  public daysSinceSprouted(): number | undefined {
+    if (!this.dateSprouted) return undefined;
+    return daysBetween(this.dateSprouted, new Date());
+  }
 }
 
 export class PlantingTray {
