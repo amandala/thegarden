@@ -15,6 +15,18 @@ export const SunnyBackground = () => {
           <div key={index} className={styles.star}></div>
         ))}
       </div>
+      <div className={styles.cloudwrapperOne}>
+        <div className={styles.cloud}></div>
+      </div>
+      <div className={styles.cloudwrapperTwo}>
+        <div className={styles.cloud}></div>
+      </div>
+      <div className={styles.cloudwrapperThree}>
+        <div className={styles.cloud}></div>
+      </div>
+      <div className={styles.cloudwrapperFour}>
+        <div className={styles.cloud}></div>
+      </div>
     </div>
   );
 };
