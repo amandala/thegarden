@@ -20,7 +20,7 @@ const SproutedDate = ({
   planted: Date;
   sprouted: Date;
 }) => {
-  return <p>🌱 Sprouted in {daysBetween(planted, sprouted)} days</p>;
+  return <p>Sprouted in {daysBetween(planted, sprouted)} days</p>;
 };
 
 const GerminationDates = ({
@@ -32,7 +32,7 @@ const GerminationDates = ({
 }) => {
   return (
     <p>
-      {`⏳ ${getPrettyDate(germDates.startDate)} - 
+      {`${getPrettyDate(germDates.startDate)} - 
       ${getPrettyDate(germDates.endDate)} (${germDays?.rangeStartDays} - ${
         germDays?.rangeEndDays
       } days)`}
@@ -50,7 +50,8 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         key={plant.key}
       >
         <h3 className={styles.Name}>
-          {plant.variant?.toString()} {plant.name.toString()}
+          {plant.dateSprouted ? "🌱" : "⏳"} {plant.variant?.toString()}{" "}
+          {plant.name.toString()}
         </h3>
         <h4 className={styles.Cell}>Cell: {plant.cell}</h4>
         <PlantedDate date={plant.datePlanted} />
