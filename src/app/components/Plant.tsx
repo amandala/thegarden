@@ -1,44 +1,10 @@
 import { Plant } from "../classes";
-import { daysBetween, getPrettyDate } from "../helpers";
-import {
-  GerminationTimeframeDates,
-  GerminationTimeframeNumDays,
-} from "../types";
+
 import cx from "classnames";
 
 import styles from "./Plant.module.css";
 import Link from "next/link";
-
-const PlantedDate = ({ date }: { date: Date }) => {
-  return <p className={styles.PlantedDate}>Planted {getPrettyDate(date)}</p>;
-};
-
-const SproutedDate = ({
-  planted,
-  sprouted,
-}: {
-  planted: Date;
-  sprouted: Date;
-}) => {
-  return <p>Sprouted in {daysBetween(planted, sprouted)} days</p>;
-};
-
-const GerminationDates = ({
-  germDates,
-  germDays,
-}: {
-  germDates: GerminationTimeframeDates;
-  germDays?: GerminationTimeframeNumDays;
-}) => {
-  return (
-    <p>
-      {`${getPrettyDate(germDates.startDate)} - 
-      ${getPrettyDate(germDates.endDate)} (${germDays?.rangeStartDays} - ${
-        germDays?.rangeEndDays
-      } days)`}
-    </p>
-  );
-};
+import { GerminationDates, PlantedDate, SproutedDays } from "./PlantInfoLines";
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
@@ -50,22 +16,19 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         key={plant.key}
       >
         <h3 className={styles.Name}>
-          {plant.dateSprouted ? "🌱" : "⏳"} {plant.variant?.toString()}{" "}
-          {plant.name.toString()}
+          {plant.variant?.toString()} {plant.name.toString()}{" "}
+          {plant.dateSprouted ? "🌱" : "⏳"}
         </h3>
         <h4 className={styles.Cell}>Cell: {plant.cell}</h4>
         <PlantedDate date={plant.datePlanted} />
         {plant.dateSprouted && (
-          <SproutedDate
+          <SproutedDays
             planted={plant.datePlanted}
             sprouted={plant.dateSprouted}
           />
         )}
         {plant.germinationDates && !plant.dateSprouted && (
-          <GerminationDates
-            germDates={plant.germinationDates}
-            germDays={plant.germinationTimeframe}
-          />
+          <GerminationDates germDates={plant.germinationDates} />
         )}
       </div>
     </Link>

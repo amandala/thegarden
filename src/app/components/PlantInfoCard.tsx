@@ -4,7 +4,13 @@ import { useContext } from "react";
 import { GardenContext } from "../garden-provider";
 
 import styles from "./PlantInfoCard.module.css";
-import { getPrettyDate } from "../helpers";
+import {
+  GerminationDates,
+  GerminationNumDays,
+  PlantedDate,
+  PlantLocation,
+  SproutedDays,
+} from "./PlantInfoLines";
 
 export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
   const plantingTray = useContext(GardenContext).plantingTray;
@@ -14,12 +20,28 @@ export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
 
   return (
     <div>
-      <h1>{plant?.name}</h1>
-      <div className={styles.Section}></div>
+      <h1>
+        {plant.variant} {plant.name}
+      </h1>
+      <div className={styles.Section}>
+        <h4>Planting Info</h4>
+        <PlantedDate date={plant.datePlanted} />
+        <PlantLocation location={plant.location} cell={plant.cell} />
+      </div>
       <div className={styles.Section}>
         <h4>Germination Info</h4>
-        <p>Planted {getPrettyDate(plant?.datePlanted)}</p>
-        <p></p>
+        {plant.dateSprouted ? (
+          <SproutedDays
+            planted={plant.datePlanted}
+            sprouted={plant.dateSprouted}
+          />
+        ) : null}
+        {plant.germinationDates ? (
+          <GerminationDates germDates={plant.germinationDates} />
+        ) : null}
+        {plant.germinationTimeframe ? (
+          <GerminationNumDays germDays={plant.germinationTimeframe} />
+        ) : null}
       </div>
     </div>
   );

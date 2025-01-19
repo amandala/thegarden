@@ -4,6 +4,7 @@ import { createContext } from "react";
 import { getJan11Plants } from "./helpers";
 import { PlantingTray } from "./classes";
 import { sproutEvents } from "./events";
+import React from "react";
 
 export const GardenContext = createContext<{
   plantingTray?: PlantingTray;
@@ -20,7 +21,7 @@ export default function GardenProvider({
   plantingTray.recordSprouts(sproutEvents);
 
   return (
-    <GardenContext.Provider value={{ plantingTray: plantingTray }}>
+    <GardenContext.Provider value={{ plantingTray }}>
       {children}
     </GardenContext.Provider>
   );

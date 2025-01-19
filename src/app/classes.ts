@@ -3,6 +3,7 @@ import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
   SproutEvent,
+  Location,
 } from "./types";
 
 export class Plant {
@@ -14,6 +15,7 @@ export class Plant {
   dateSprouted?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
   germinationDates?: GerminationTimeframeDates;
+  location: Location;
 
   constructor({
     name,
@@ -33,12 +35,13 @@ export class Plant {
       rangeEndDays: number;
     };
   }) {
-    this.key = `${cell}-${name}-${datePlanted.getDay()}`;
+    this.key = `${cell}-${name.slice(0, 3)}-${datePlanted.getDay()}`;
     this.name = name;
     this.datePlanted = datePlanted;
     this.cell = cell;
     this.variant = variant;
     this.dateSprouted = dateSprouted;
+    this.location = "tray";
 
     if (germinationTimeframe) {
       this.germinationTimeframe = {

@@ -40,3 +40,13 @@ a {
     color-scheme: dark;
   }
 }
+
+h4 {
+  margin-bottom: 4px;
+  letter-spacing: 1.1px;
+}
+
+p {
+  margin-bottom: 4px;
+  letter-spacing: 1.1px;
+}
