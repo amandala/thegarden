@@ -1,0 +1,67 @@
+.seedlingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  height: 20px;
+}
+
+.seedling {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  animation: sway 5s infinite;
+}
+
+.stem {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  height: 15px;
+  background-color: green;
+  transform: translateX(-50%);
+}
+
+.leaf {
+  position: absolute;
+  bottom: 12px;
+  width: 0;
+  height: 0;
+  background-color: green;
+  border-radius: 50%;
+  animation: growLeaf 2s forwards;
+}
+
+.leafLeft {
+  left: 10px;
+  transform-origin: right;
+}
+
+.leafRight {
+  right: 10px;
+  transform-origin: left;
+}
+
+@keyframes growLeaf {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 20px;
+    height: 10px;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
