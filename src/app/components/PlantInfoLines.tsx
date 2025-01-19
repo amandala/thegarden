@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getPrettyDate, daysDifference, daysBetween } from "../helpers";
 
 import {
@@ -26,26 +26,20 @@ export const GerminationDates = ({
 }: {
   germDates: GerminationTimeframeDates;
 }) => {
-  const [startDateText, setStartDateText] = useState("");
+  const today = new Date();
+  const daysDiff = daysDifference(germDates.startDate, today);
 
-  useEffect(() => {
-    const today = new Date();
-    const daysDiff = daysDifference(germDates.startDate, today);
-
-    const text = (() => {
-      if (daysDiff === 0) return "today";
-      if (daysDiff === 1) return "tomorrow";
-      if (daysDiff === -1) return "yesterday";
-      if (daysDiff < 0) return `${Math.abs(daysDiff)} days ago`;
-      return getPrettyDate(germDates.startDate);
-    })();
-
-    setStartDateText(text);
-  }, [germDates.startDate]);
+  const text = (() => {
+    if (daysDiff === 0) return "today";
+    if (daysDiff === 1) return "tomorrow";
+    if (daysDiff === -1) return "yesterday";
+    if (daysDiff < 0) return `${Math.abs(daysDiff)} days ago`;
+    return getPrettyDate(germDates.startDate);
+  })();
 
   return (
     <p>
-      Expected {startDateText} - {getPrettyDate(germDates.endDate)}
+      Expected {text} - {getPrettyDate(germDates.endDate)}
     </p>
   );
 };

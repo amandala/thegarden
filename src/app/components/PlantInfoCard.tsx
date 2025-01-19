@@ -38,7 +38,7 @@ export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
             sprouted={plant.dateSprouted}
           />
         ) : null}
-        {plant.germinationDates ? (
+        {plant.germinationDates && !plant.dateSprouted ? (
           <GerminationDates germDates={plant.germinationDates} />
         ) : null}
         {plant.germinationTimeframe ? (
