@@ -1,3 +1,23 @@
 .Section {
   margin: 16px 0;
 }
+
+.PlantInfo {
+  position: relative;
+  margin: 0 auto;
+  max-width: 400px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.Sprouted {
+  border-color: #63ae12;
+  border-width: 3px;
+}
+
+@media (prefers-color-scheme: light) {
+  .Card {
+    border-color: black;
+  }
+}

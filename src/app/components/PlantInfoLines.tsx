@@ -1,3 +1,5 @@
+"use client";
+
 import { getPrettyDate, daysDifference, daysBetween } from "../helpers";
 
 import {

@@ -2,6 +2,7 @@
 
 import { useContext } from "react";
 import { GardenContext } from "../garden-provider";
+import cx from "classnames";
 
 import styles from "./PlantInfoCard.module.css";
 import {
@@ -13,6 +14,7 @@ import {
   SproutedDays,
   SproutedOn,
 } from "./PlantInfoLines";
+import GrowingSeedling from "./GrowingSeedling";
 
 export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
   const plantingTray = useContext(GardenContext).plantingTray;
@@ -21,7 +23,11 @@ export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
   if (!plant) return null;
 
   return (
-    <div>
+    <div
+      className={cx(styles.PlantInfo, {
+        [styles.Sprouted]: plant.dateSprouted,
+      })}
+    >
       <h1>
         {plant.variant} {plant.name}
       </h1>
@@ -51,6 +57,7 @@ export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
           <SproutedOn dateSprouted={plant.dateSprouted} />
         ) : null}
       </div>
+      {plant.dateSprouted && <GrowingSeedling />}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { Plant } from "../classes";
 
 import cx from "classnames";
