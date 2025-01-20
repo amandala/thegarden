@@ -286,7 +286,7 @@
   .uap {
     position: absolute;
     bottom: 5%;
-    left: -10%;
+    left: -40%;
     width: 100px;
     height: 10px;
     background: gray;
@@ -338,7 +338,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(120vw);
+      transform: translateX(200vw);
     }
   }
 
