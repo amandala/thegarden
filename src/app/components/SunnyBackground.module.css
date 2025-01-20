@@ -271,7 +271,8 @@
     animation: twinkling 1.5s infinite alternate;
   }
 
-  .shootingStar {
+  .shootingStar,
+  .shootingStar2 {
     position: absolute;
     top: 10%;
     left: -10%;
@@ -281,6 +282,15 @@
     border-radius: 50%;
     box-shadow: 0 0 10px white;
     animation: shooting 5s linear 1;
+  }
+
+  .shootingStar2 {
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    width: 2px;
+    height: 2px;
+    animation-delay: 7s;
   }
 
   .uap {
@@ -293,7 +303,7 @@
     border-radius: 50% 50% 0 0;
     border-bottom: 5px dotted red;
     box-shadow: 0 0 10px red;
-    animation: fly-uap 6s linear 1;
+    animation: fly-uap 8s linear 1;
     animation-delay: 6s;
     z-index: 5;
   }

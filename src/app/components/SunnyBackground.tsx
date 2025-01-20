@@ -15,6 +15,7 @@ export const SunnyBackground = () => {
           <div key={index} className={styles.star}></div>
         ))}
         <div className={styles.shootingStar}></div>
+        <div className={styles.shootingStar2}></div>
         <div className={styles.uap}></div>
       </div>
       <div className={styles.cloudwrapperOne}>
