@@ -11,7 +11,7 @@
 
 .sun {
   position: absolute;
-  top: 110%; /* Start out of view */
+  top: 110%;
   left: 50%;
   width: 100px;
   height: 100px;
@@ -23,7 +23,7 @@
 
 .moon {
   position: absolute;
-  top: 110%; /* Start out of view */
+  top: 110%;
   left: 50%;
   width: 100px;
   height: 100px;
@@ -134,13 +134,12 @@
   }
 }
 
-/* Clouds */
 .cloudwrapperOne,
 .cloudwrapperTwo,
 .cloudwrapperThree,
 .cloudwrapperFour {
   animation: movecloudsoversky 120s linear infinite;
-  z-index: 2001; /* Ensure clouds are in front of sun and moon */
+  z-index: 2001;
 }
 
 .cloudwrapperOne {
@@ -218,7 +217,7 @@
     opacity: 0.8;
   }
   100% {
-    transform: translate(-125%, 10vh); /* Move completely out of view */
+    transform: translate(-125%, 10vh);
     opacity: 0.4;
   }
 }
@@ -247,12 +246,12 @@
   }
 
   .cloud {
-    background: #555; /* Darker clouds */
+    background: #555;
   }
 
   .cloud:before,
   .cloud:after {
-    background: #555; /* Darker clouds */
+    background: #555;
   }
 
   .stars {
@@ -262,7 +261,7 @@
     width: 100%;
     height: 100%;
     background: transparent;
-    z-index: 90; /* Ensure stars are farthest back */
+    z-index: 90;
   }
 
   .star {
@@ -281,7 +280,46 @@
     background: white;
     border-radius: 50%;
     box-shadow: 0 0 10px white;
-    animation: shooting 5s linear 1; /* Run only once */
+    animation: shooting 5s linear 1;
+  }
+
+  .uap {
+    position: absolute;
+    bottom: 5%;
+    left: -10%;
+    width: 100px;
+    height: 10px;
+    background: gray;
+    border-radius: 50% 50% 0 0;
+    border-bottom: 5px dotted red;
+    box-shadow: 0 10px 10px -5px red;
+    animation: fly-uap 6s linear 1;
+    animation-delay: 6s;
+    z-index: 5;
+  }
+
+  .uap::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    width: 33px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50% 50% 0 0;
+    transform: translateX(-50%);
+  }
+
+  .uap::after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 8px;
+    height: 10px;
+    background: green;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translateX(-50%);
   }
 
   @keyframes shooting {
@@ -292,6 +330,15 @@
     100% {
       transform: translateX(120vw) translateY(60vh);
       opacity: 0;
+    }
+  }
+
+  @keyframes fly-uap {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(120vw);
     }
   }
 
