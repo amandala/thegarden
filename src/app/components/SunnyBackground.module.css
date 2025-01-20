@@ -32,7 +32,6 @@
   box-shadow: 0 0 50px white;
   animation: move-moon 60s linear infinite;
   overflow: hidden;
-  z-index: 2002; /* Ensure moon is above stars */
 }
 
 .moon::before,
@@ -140,8 +139,8 @@
 .cloudwrapperTwo,
 .cloudwrapperThree,
 .cloudwrapperFour {
-  animation: movecloudsoversky 120s linear infinite; /* Slower speed */
-  z-index: 2001;
+  animation: movecloudsoversky 120s linear infinite;
+  z-index: 2001; /* Ensure clouds are in front of sun and moon */
 }
 
 .cloudwrapperOne {
@@ -157,13 +156,13 @@
 .cloudwrapperThree {
   top: 14%;
   animation-delay: -20s;
-  animation-duration: 65s; /* Slightly different speed */
+  animation-duration: 65s;
 }
 
 .cloudwrapperFour {
   top: 16%;
   animation-delay: -25s;
-  animation-duration: 55s; /* Slightly different speed */
+  animation-duration: 55s;
 }
 
 .cloud {
@@ -172,22 +171,21 @@
   background: white;
   position: relative;
   border-radius: 200px;
-  z-index: 2000;
 }
 
 .cloudwrapperThree .cloud {
-  width: 300px; /* 50% bigger */
-  height: 90px; /* 50% bigger */
+  width: 300px;
+  height: 90px;
 }
 
 .cloudwrapperThree .cloud:before {
-  width: 150px; /* 50% bigger */
-  height: 120px; /* 50% bigger */
+  width: 150px;
+  height: 120px;
 }
 
 .cloudwrapperThree .cloud:after {
-  width: 180px; /* 50% bigger */
-  height: 180px; /* 50% bigger */
+  width: 180px;
+  height: 180px;
 }
 
 .cloud:before,
@@ -264,7 +262,7 @@
     width: 100%;
     height: 100%;
     background: transparent;
-    z-index: 2000; /* Ensure stars are below moon */
+    z-index: 90; /* Ensure stars are farthest back */
   }
 
   .star {
