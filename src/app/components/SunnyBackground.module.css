@@ -4,21 +4,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #87ceeb, #4682b4);
+  background: linear-gradient(to bottom, #4682b4, #87ceeb);
   overflow: hidden;
   z-index: -1;
 }
 
 .sun {
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 50%;
   width: 100px;
   height: 100px;
   background: yellow;
   border-radius: 50%;
   box-shadow: 0 0 50px yellow;
-  animation: move-sun 60s linear infinite;
+  animation: move-sun 600s linear infinite;
 }
 
 .moon {
@@ -30,7 +30,7 @@
   background: radial-gradient(circle, #b0b0b0 60%, #808080 100%);
   border-radius: 50%;
   box-shadow: 0 0 50px white;
-  animation: move-moon 60s linear infinite;
+  animation: move-moon 600s linear infinite;
   overflow: hidden;
 }
 
@@ -234,7 +234,7 @@
 
 @media (prefers-color-scheme: dark) {
   .sunnyBackground {
-    background: linear-gradient(to bottom, #2c3e50, #1c2833);
+    background: linear-gradient(to bottom, #1c2833, #2c3e50);
   }
 
   .sun {
