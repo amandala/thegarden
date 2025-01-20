@@ -14,6 +14,7 @@ export const SunnyBackground = () => {
         {Array.from({ length: 30 }).map((_, index) => (
           <div key={index} className={styles.star}></div>
         ))}
+        <div className={styles.shootingStar}></div>
       </div>
       <div className={styles.cloudwrapperOne}>
         <div className={styles.cloud}></div>
