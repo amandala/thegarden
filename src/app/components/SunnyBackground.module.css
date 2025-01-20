@@ -11,7 +11,7 @@
 
 .sun {
   position: absolute;
-  top: 10%;
+  top: 110%; /* Start out of view */
   left: 50%;
   width: 100px;
   height: 100px;
@@ -23,7 +23,7 @@
 
 .moon {
   position: absolute;
-  top: 10%;
+  top: 110%; /* Start out of view */
   left: 50%;
   width: 100px;
   height: 100px;
@@ -83,7 +83,7 @@
 @keyframes move-sun {
   0% {
     top: 40%;
-    left: 0%;
+    left: -12%;
   }
   20% {
     top: 30%;
@@ -110,7 +110,7 @@
 @keyframes move-moon {
   0% {
     top: 40%;
-    left: 0%;
+    left: -10%;
   }
   20% {
     top: 30%;
