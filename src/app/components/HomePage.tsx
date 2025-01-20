@@ -4,7 +4,7 @@ import styles from "./HomePage.module.css";
 const HomePage = () => {
   return (
     <div>
-      <h1 className={styles.Heading}>Welcome to The Garden</h1>
+      <h1 className={styles.Heading}>Welcome to Amanda&apos;s Garden</h1>
       <PlantingTray />
     </div>
   );
