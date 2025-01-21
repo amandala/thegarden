@@ -1,6 +1,11 @@
 "use client";
 
-import { getPrettyDate, daysDifference, daysBetween } from "../helpers";
+import {
+  getPrettyDate,
+  daysDifference,
+  daysBetween,
+  isToday,
+} from "../helpers";
 
 import {
   GerminationTimeframeDates,
@@ -27,8 +32,7 @@ export const GerminationDates = ({
 }: {
   germDates: GerminationTimeframeDates;
 }) => {
-  const today = new Date();
-  const daysDiff = daysDifference(germDates.startDate, today);
+  const daysDiff = daysDifference(germDates.startDate);
 
   const text = (() => {
     if (daysDiff === 0) return "today";
@@ -80,5 +84,10 @@ export const PlantAge = ({ daysAlive }: { daysAlive: number | undefined }) => {
 };
 
 export const SproutedOn = ({ dateSprouted }: { dateSprouted: Date }) => {
-  return <p>Sprouted on {getPrettyDate(dateSprouted)}</p>;
+  return (
+    <p>
+      Sprouted
+      {isToday(dateSprouted) ? " Today" : ` on ${getPrettyDate(dateSprouted)}`}
+    </p>
+  );
 };

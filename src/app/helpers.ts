@@ -186,14 +186,17 @@ export const dateInFuture = (startDate: Date, daysToAdd: number) => {
 };
 
 export const getPrettyDate = (date: Date) => {
-  return date.toLocaleDateString("en-US", {
+  return date?.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 };
 
-export const daysDifference = (date: Date, today: Date = new Date()) =>
-  Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+export const daysDifference = (date: Date): number => {
+  const today = new Date();
+
+  return Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+};
 
 export const daysBetween = (date1: Date, date2: Date) => {
   const millisecondsDiff = date2.getTime() - date1.getTime();
@@ -201,4 +204,17 @@ export const daysBetween = (date1: Date, date2: Date) => {
   const aDayInMs = 24 * 60 * 60 * 1000;
 
   return Math.round(millisecondsDiff / aDayInMs);
+};
+
+export const isToday = (date: Date) => {
+  const today = new Date();
+
+  if (
+    today?.getFullYear() === date?.getFullYear() &&
+    today?.getMonth() === date?.getMonth() &&
+    today?.getDate() === date?.getDate()
+  ) {
+    return true;
+  }
+  return false;
 };

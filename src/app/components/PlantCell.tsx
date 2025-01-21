@@ -4,9 +4,9 @@ import { Plant } from "../classes";
 
 import cx from "classnames";
 
-import styles from "./Plant.module.css";
+import styles from "./PlantCell.module.css";
 import Link from "next/link";
-import { GerminationDates, PlantedDate, SproutedDays } from "./PlantInfoLines";
+import { GerminationDates, PlantedDate, SproutedOn } from "./PlantInfoLines";
 import GrowingSeedling from "./GrowingSeedling";
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
@@ -23,14 +23,7 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         </h3>
         <h4 className={styles.Cell}>Cell: {plant.cell}</h4>
         <PlantedDate date={plant.datePlanted} />
-        {plant.dateSprouted && (
-          <>
-            <SproutedDays
-              planted={plant.datePlanted}
-              sprouted={plant.dateSprouted}
-            />
-          </>
-        )}
+        {plant.dateSprouted && <SproutedOn dateSprouted={plant.dateSprouted} />}
         {plant.germinationDates && !plant.dateSprouted && (
           <GerminationDates germDates={plant.germinationDates} />
         )}

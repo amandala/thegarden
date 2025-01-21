@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 
-import { PlantCell } from "./Plant";
+import { PlantCell } from "./PlantCell";
 
 import styles from "./PlantingTray.module.css";
 import { GardenContext } from "../garden-provider";
