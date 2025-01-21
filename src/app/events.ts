@@ -29,4 +29,8 @@ export const sproutEvents: Array<SproutEvent> = [
     cell: "1D",
     dateSprouted: new Date(2025, 0, 17),
   },
+  {
+    cell: "2D",
+    dateSprouted: new Date(2025, 0, 20),
+  },
 ];
