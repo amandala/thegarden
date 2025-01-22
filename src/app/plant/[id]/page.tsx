@@ -11,7 +11,7 @@ const PlantPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   let data;
   if (
     path === "http://localhost:3000/" ||
-    path === "https://amandasgarden.com/"
+    path === "https://www.amandasgarden.com/"
   ) {
     data = await fetch(`${path}api/garden/planting-tray`).then((res) => {
       return res.json();

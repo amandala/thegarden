@@ -12,7 +12,7 @@ export default async function Home() {
   let data;
   if (
     path === "http://localhost:3000/" ||
-    path === "https://amandasgarden.com/"
+    path === "https://www.amandasgarden.com/"
   ) {
     data = await fetch(`${path}api/garden/planting-tray`).then((res) => {
       return res.json();
