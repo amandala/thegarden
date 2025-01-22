@@ -4,6 +4,12 @@ import {
   GerminationTimeframeNumDays,
 } from "./types";
 
+export const getApiPrefix = () => {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://amandasgarden.com";
+};
+
 export const daysSinceSprouted = (dateSprouted: Date) => {
   return daysBetween(dateSprouted, new Date());
 };

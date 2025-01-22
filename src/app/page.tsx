@@ -7,10 +7,19 @@ export default async function Home() {
   const headerList = await headers();
 
   const path = await headerList.get("referer");
+  console.log(path);
 
-  const data = await fetch(`${path}/api/garden/planting-tray`).then((res) => {
-    return res.json();
-  });
+  let data;
+  if (
+    path === "http://localhost:3000/" ||
+    path === "https://amandasgarden.com/"
+  ) {
+    data = await fetch(`${path}api/garden/planting-tray`).then((res) => {
+      return res.json();
+    });
+  }
+
+  if (!data) return null;
 
   return (
     <div>
