@@ -194,7 +194,6 @@ export const getPrettyDate = (date: Date) => {
 
 export const daysDifference = (date: Date): number => {
   const today = new Date();
-
   return Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 };
 
