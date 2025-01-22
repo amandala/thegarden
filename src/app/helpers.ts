@@ -1,4 +1,25 @@
 import { Plant, PlantingTray } from "./classes";
+import {
+  GerminationTimeframeDates,
+  GerminationTimeframeNumDays,
+} from "./types";
+
+export const daysSinceSprouted = (dateSprouted: Date) => {
+  return daysBetween(dateSprouted, new Date());
+};
+
+export const calculateGerminationTimeframe = ({
+  datePlanted,
+  germinationTimeframe,
+}: {
+  datePlanted: Date;
+  germinationTimeframe: GerminationTimeframeNumDays;
+}): GerminationTimeframeDates => {
+  return {
+    startDate: dateInFuture(datePlanted, germinationTimeframe.rangeStartDays),
+    endDate: dateInFuture(datePlanted, germinationTimeframe.rangeEndDays),
+  };
+};
 
 export const getJan11Plants = () => {
   const tray = new PlantingTray();
@@ -186,19 +207,26 @@ export const dateInFuture = (startDate: Date, daysToAdd: number) => {
 };
 
 export const getPrettyDate = (date: Date) => {
-  return date?.toLocaleDateString("en-US", {
+  const newDate = new Date(date);
+
+  return newDate.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 };
 
 export const daysDifference = (date: Date): number => {
+  const suppliedDate = new Date(date);
   const today = new Date();
-  return Math.ceil((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  return Math.ceil(
+    (suppliedDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
+  );
 };
 
 export const daysBetween = (date1: Date, date2: Date) => {
-  const millisecondsDiff = date2.getTime() - date1.getTime();
+  const newDate1 = new Date(date1);
+  const newDate2 = new Date(date2);
+  const millisecondsDiff = newDate2.getTime() - newDate1.getTime();
 
   const aDayInMs = 24 * 60 * 60 * 1000;
 
@@ -206,12 +234,13 @@ export const daysBetween = (date1: Date, date2: Date) => {
 };
 
 export const isToday = (date: Date) => {
+  const suppliedDate = new Date(date);
   const today = new Date();
 
   if (
-    today?.getFullYear() === date?.getFullYear() &&
-    today?.getMonth() === date?.getMonth() &&
-    today?.getDate() === date?.getDate()
+    today?.getFullYear() === suppliedDate?.getFullYear() &&
+    today?.getMonth() === suppliedDate?.getMonth() &&
+    today?.getDate() === suppliedDate?.getDate()
   ) {
     return true;
   }

@@ -1,17 +1,24 @@
+"use client";
+
+import useSWR from "swr";
 import { PlantCell } from "./PlantCell";
 
 import styles from "./PlantingTray.module.css";
+import { fetcher } from "@/app/lib/api";
+import { Plant } from "@/app/classes";
 
-import { PlantingTray as PlantingTrayData } from "@/app/classes";
+export const PlantingTray = () => {
+  // error, isLoading
+  const { data } = useSWR("../api/garden/plants", fetcher);
 
-export const PlantingTray = ({ trayData }: { trayData: PlantingTrayData }) => {
-  return (
-    <div className={styles.Tray} data-testid="planting-tray">
-      <div className={styles.PlantGrid}>
-        {trayData.getPlants().map((plant) => (
-          <PlantCell key={`${plant.cell}`} plant={plant} />
-        ))}
+  if (data)
+    return (
+      <div className={styles.Tray} data-testid="planting-tray">
+        <div className={styles.PlantGrid}>
+          {data.tray.plantings.map((plant: Plant) => (
+            <PlantCell key={`${plant.cell}`} plant={plant} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
 };

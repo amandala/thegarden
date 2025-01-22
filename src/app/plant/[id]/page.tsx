@@ -8,7 +8,7 @@ const PlantPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.Card}>
-        <PlantInfoCard plantId={paramaters.id} />
+        <PlantInfoCard id={paramaters.id} />
       </div>
     </div>
   );
