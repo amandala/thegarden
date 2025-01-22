@@ -9,10 +9,7 @@ const PlantPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const path = await headerList.get("referer");
 
   let data;
-  if (
-    path === "http://localhost:3000/" ||
-    path === "https://www.amandasgarden.com/"
-  ) {
+  if (path === "http://localhost:3000/" || path?.includes("amandasgarden")) {
     data = await fetch(`${path}api/garden/planting-tray`).then((res) => {
       return res.json();
     });
