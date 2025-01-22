@@ -117,9 +117,11 @@ export class Plant {
 }
 
 export class PlantingTray {
+  readonly id: string;
   private plantings: Array<Plant>;
 
   constructor() {
+    this.id = `tray-${new Date().getTime()}`;
     this.plantings = [];
   }
 
