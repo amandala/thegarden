@@ -1,4 +1,4 @@
-import { calculateGerminationTimeframe } from "./helpers";
+import { dateInFuture, daysBetween } from "./helpers";
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
@@ -78,11 +78,41 @@ export class Plant {
         rangeEndDays: germinationTimeframe.rangeEndDays,
       };
 
-      this.germinationDates = calculateGerminationTimeframe({
-        germinationTimeframe,
-        datePlanted,
-      });
+      this.germinationDates =
+        this.calculateGerminationTimeframe(germinationTimeframe);
     }
+  }
+
+  public setPlantedDate(datePlanted: Date) {
+    this.datePlanted = datePlanted;
+  }
+
+  public getPlantedDate() {
+    return this.datePlanted;
+  }
+
+  public setSproutDate(dateSprouted: Date) {
+    this.dateSprouted = dateSprouted;
+  }
+
+  public calculateGerminationTimeframe = (
+    germinationTimeframe: GerminationTimeframeNumDays
+  ): GerminationTimeframeDates => {
+    return {
+      startDate: dateInFuture(
+        this.getPlantedDate(),
+        germinationTimeframe.rangeStartDays
+      ),
+      endDate: dateInFuture(
+        this.getPlantedDate(),
+        germinationTimeframe.rangeEndDays
+      ),
+    };
+  };
+
+  public daysSinceSprouted(): number | undefined {
+    if (!this.dateSprouted) return undefined;
+    return daysBetween(this.dateSprouted, new Date());
   }
 }
 
@@ -105,7 +135,7 @@ export class PlantingTray {
 
   private setCellSprouted(cell: string, dateSprouted: Date) {
     const plant = this.getPlantByCell(cell);
-    if (plant) plant.dateSprouted = dateSprouted;
+    if (plant) plant.setSproutDate(dateSprouted);
     else throw new Error(`Unable to find plant at ${cell}`);
   }
 

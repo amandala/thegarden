@@ -1,5 +1,7 @@
 "use client";
 
+import { useContext } from "react";
+import { GardenContext } from "../../garden-provider";
 import cx from "classnames";
 
 import styles from "./PlantInfoCard.module.css";
@@ -13,17 +15,10 @@ import {
   SproutedOn,
 } from "../shared/PlantInfoLines";
 import GrowingSeedling from "../animations/GrowingSeedling";
-import { daysSinceSprouted } from "@/app/helpers";
-import { Plant } from "@/app/classes";
 
-export const PlantInfoCard = ({
-  plantId,
-  plantData,
-}: {
-  plantId: string;
-  plantData: Array<Plant>;
-}) => {
-  const plant = plantData.find((plant) => plant.id === plantId);
+export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
+  const plantingTray = useContext(GardenContext).plantingTray;
+  const plant = plantingTray?.getPlantById(plantId);
 
   if (!plant) return null;
 
@@ -56,7 +51,7 @@ export const PlantInfoCard = ({
           <GerminationNumDays germDays={plant.germinationTimeframe} />
         ) : null}
         {plant.dateSprouted ? (
-          <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
+          <PlantAge daysAlive={plant.daysSinceSprouted()} />
         ) : null}
         {plant.dateSprouted ? (
           <SproutedOn dateSprouted={plant.dateSprouted} />
