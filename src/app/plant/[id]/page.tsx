@@ -1,12 +1,13 @@
 import { PlantInfoCard } from "@/app/components/plant-details/PlantInfoCard";
 
 import styles from "./styles.module.css";
+import { headers } from "next/headers";
 
 const PlantPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const paramaters = await params;
-  const plantData = await fetch(
-    "http://localhost:3000/api/garden/planting-tray"
-  ).then((res) => {
+  const headerList = await headers();
+  const path = await headerList.get("referer");
+  const data = await fetch(`${path}/api/garden/planting-tray`).then((res) => {
     return res.json();
   });
 
@@ -15,7 +16,7 @@ const PlantPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       <div className={styles.Card}>
         <PlantInfoCard
           plantId={paramaters.id}
-          plantData={plantData.tray.plantings}
+          plantData={data.tray.plantings}
         />
       </div>
     </div>

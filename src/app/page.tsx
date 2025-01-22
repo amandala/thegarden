@@ -1,10 +1,14 @@
 import { PlantingTray } from "@/app/components/planting-tray/PlantingTray";
 import styles from "./page.module.css";
 
+import { headers } from "next/headers";
+
 export default async function Home() {
-  const data = await fetch(
-    "http://localhost:3000/api/garden/planting-tray"
-  ).then((res) => {
+  const headerList = await headers();
+
+  const path = await headerList.get("referer");
+
+  const data = await fetch(`${path}/api/garden/planting-tray`).then((res) => {
     return res.json();
   });
 
