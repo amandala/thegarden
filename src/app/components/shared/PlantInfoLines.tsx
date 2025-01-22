@@ -5,13 +5,13 @@ import {
   daysDifference,
   daysBetween,
   isToday,
-} from "../helpers";
+} from "../../helpers";
 
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
   Location,
-} from "../types";
+} from "../../types";
 
 export const PlantedDate = ({ date }: { date: Date }) => {
   return <p>Planted {getPrettyDate(date)}</p>;

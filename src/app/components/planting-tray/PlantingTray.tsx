@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { PlantCell } from "./PlantCell";
 
 import styles from "./PlantingTray.module.css";
-import { GardenContext } from "../garden-provider";
+import { GardenContext } from "../../garden-provider";
 
 export const PlantingTray = () => {
   const plantingTray = useContext(GardenContext).plantingTray;

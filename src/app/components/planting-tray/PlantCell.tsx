@@ -1,13 +1,17 @@
 "use client";
 
-import { Plant } from "../classes";
+import { Plant } from "../../classes";
 
 import cx from "classnames";
 
 import styles from "./PlantCell.module.css";
 import Link from "next/link";
-import { GerminationDates, PlantedDate, SproutedOn } from "./PlantInfoLines";
-import GrowingSeedling from "./GrowingSeedling";
+import {
+  GerminationDates,
+  PlantedDate,
+  SproutedOn,
+} from "../shared/PlantInfoLines";
+import GrowingSeedling from "../animations/GrowingSeedling";
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (

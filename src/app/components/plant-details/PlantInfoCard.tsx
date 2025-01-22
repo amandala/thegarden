@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { GardenContext } from "../garden-provider";
+import { GardenContext } from "../../garden-provider";
 import cx from "classnames";
 
 import styles from "./PlantInfoCard.module.css";
@@ -13,8 +13,8 @@ import {
   PlantLocation,
   SproutedDays,
   SproutedOn,
-} from "./PlantInfoLines";
-import GrowingSeedling from "./GrowingSeedling";
+} from "../shared/PlantInfoLines";
+import GrowingSeedling from "../animations/GrowingSeedling";
 
 export const PlantInfoCard = ({ plantId }: { plantId: string }) => {
   const plantingTray = useContext(GardenContext).plantingTray;

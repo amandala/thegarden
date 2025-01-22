@@ -1,6 +1,6 @@
-import styles from "./SunnyBackground.module.css";
+import styles from "./SkyBackground.module.css";
 
-export const SunnyBackground = () => {
+export const SkyBackground = () => {
   return (
     <div className={styles.sunnyBackground}>
       <div className={styles.sun}></div>

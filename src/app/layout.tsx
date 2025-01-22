@@ -1,7 +1,7 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import styles from "@/app/layout.module.css";
-import { SunnyBackground } from "@/app/components/SunnyBackground";
+import { SkyBackground } from "@/app/components/animations/SkyBackground";
 
 import GardenProvider from "./garden-provider";
 
@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <GardenProvider>
           <div className={styles.page}>
-            <SunnyBackground />
+            <SkyBackground />
             <main className={styles.main}>{children}</main>
             <footer className={styles.footer}></footer>
           </div>
