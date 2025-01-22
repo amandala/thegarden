@@ -10,10 +10,7 @@ export default async function Home() {
   console.log(path);
 
   let data;
-  if (
-    path === "http://localhost:3000/" ||
-    path === "https://www.amandasgarden.com/"
-  ) {
+  if (path === "http://localhost:3000/" || path?.includes("amandasgarden")) {
     data = await fetch(`${path}api/garden/planting-tray`).then((res) => {
       return res.json();
     });
