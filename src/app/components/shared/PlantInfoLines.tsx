@@ -1,5 +1,3 @@
-"use client";
-
 import {
   getPrettyDate,
   daysDifference,
@@ -10,7 +8,6 @@ import {
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
-  Location,
 } from "../../types";
 
 export const PlantedDate = ({ date }: { date: Date }) => {
@@ -59,20 +56,8 @@ export const GerminationNumDays = ({
   );
 };
 
-export const PlantLocation = ({
-  location,
-  cell,
-}: {
-  location: Location;
-  cell?: string;
-}) => {
-  const locationMap: { [key in Location]: string } = {
-    tower: "Tower Garden",
-    tray: `Planting Tray${cell ? ` (Cell: ${cell})` : ""}`,
-    garden: "Garden Bed",
-  };
-
-  return <p>Located in {locationMap[location]}</p>;
+export const PlantLocation = ({ cell }: { cell?: string }) => {
+  return <p>Located in {cell}</p>;
 };
 
 export const PlantAge = ({ daysAlive }: { daysAlive: number | undefined }) => {

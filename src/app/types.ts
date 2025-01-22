@@ -12,6 +12,3 @@ export type GerminationTimeframeNumDays = {
   rangeStartDays: number;
   rangeEndDays: number;
 };
-
-export type Location = "tower" | "garden" | "tray";
-export type GardenStyle = "tower" | "raised-bed";

@@ -3,15 +3,37 @@ import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
   SproutEvent,
-  Location,
-  GardenStyle,
 } from "./types";
 
 export class Garden {
-  gardenStyle: GardenStyle;
+  id: string;
+  plantingTrays: Array<PlantingTray>;
+  plants: Array<Plant>;
 
-  constructor(gardenStyle: GardenStyle) {
-    this.gardenStyle = gardenStyle;
+  constructor() {
+    this.id = `garden-${new Date().getTime()}`;
+    this.plantingTrays = [];
+    this.plants = [];
+  }
+
+  public addPlantToGarden({
+    plant,
+    trayId,
+  }: {
+    plant: Plant;
+    trayId?: string;
+  }) {
+    this.plants.push(plant);
+    if (trayId) {
+      const tray = this.getTrayById(trayId);
+      tray?.plantSeed(plant);
+    }
+  }
+
+  public getTrayById(trayId: string) {
+    const tray = this.plantingTrays.find((tray) => tray.id === trayId);
+    if (tray) return tray;
+    else throw new Error(`Unable to find tray with id: ${trayId}`);
   }
 }
 
@@ -24,7 +46,6 @@ export class Plant {
   dateSprouted?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
   germinationDates?: GerminationTimeframeDates;
-  location: Location;
 
   constructor({
     name,
@@ -50,7 +71,6 @@ export class Plant {
     this.cell = cell;
     this.variant = variant;
     this.dateSprouted = dateSprouted;
-    this.location = "tray";
 
     if (germinationTimeframe) {
       this.germinationTimeframe = {
@@ -97,9 +117,11 @@ export class Plant {
 }
 
 export class PlantingTray {
+  readonly id: string;
   private plantings: Array<Plant>;
 
   constructor() {
+    this.id = `tray-${new Date().getTime()}`;
     this.plantings = [];
   }
 
