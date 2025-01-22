@@ -1,16 +1,17 @@
-"use client";
-
 import { PlantingTray } from "@/app/components/planting-tray/PlantingTray";
 import styles from "./page.module.css";
-import { GardenContext } from "./garden-provider";
-import { useContext } from "react";
 
-export default function Home() {
-  const plantingTray = useContext(GardenContext).plantingTray;
+export default async function Home() {
+  const data = await fetch(
+    "http://localhost:3000/api/garden/planting-tray"
+  ).then((res) => {
+    return res.json();
+  });
+
   return (
     <div>
       <h1 className={styles.Heading}>Welcome to Amanda&apos;s Garden</h1>
-      {plantingTray && <PlantingTray trayData={plantingTray} />}
+      {data.tray && <PlantingTray trayData={data.tray.plantings} />}
     </div>
   );
 }
