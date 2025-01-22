@@ -4,10 +4,19 @@ import {
   GerminationTimeframeNumDays,
   SproutEvent,
   Location,
+  GardenStyle,
 } from "./types";
 
+export class Garden {
+  gardenStyle: GardenStyle;
+
+  constructor(gardenStyle: GardenStyle) {
+    this.gardenStyle = gardenStyle;
+  }
+}
+
 export class Plant {
-  readonly key: string;
+  readonly id: string;
   readonly name: string;
   datePlanted: Date;
   cell?: string;
@@ -35,7 +44,7 @@ export class Plant {
       rangeEndDays: number;
     };
   }) {
-    this.key = `${cell}-${name.slice(0, 3)}-${datePlanted.getDay()}`;
+    this.id = `${cell}-${name.slice(0, 3)}-${datePlanted.getDay()}`;
     this.name = name;
     this.datePlanted = datePlanted;
     this.cell = cell;
@@ -99,7 +108,7 @@ export class PlantingTray {
   }
 
   public getPlantById(id: string): Plant | undefined {
-    return this.plantings.find((planting) => planting.key === id);
+    return this.plantings.find((planting) => planting.id === id);
   }
 
   private setCellSprouted(cell: string, dateSprouted: Date) {

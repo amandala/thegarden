@@ -15,12 +15,12 @@ import GrowingSeedling from "../animations/GrowingSeedling";
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
-    <Link href={`/plant/${plant.key}`}>
+    <Link href={`/plant/${plant.id}`}>
       <div
         className={cx(styles.Plant, {
           [styles.PlantSprouted]: plant.dateSprouted,
         })}
-        key={plant.key}
+        key={plant.id}
       >
         <h3 className={styles.Name}>
           {plant.variant?.toString()} {plant.name.toString()}{" "}

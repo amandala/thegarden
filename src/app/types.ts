@@ -14,3 +14,4 @@ export type GerminationTimeframeNumDays = {
 };
 
 export type Location = "tower" | "garden" | "tray";
+export type GardenStyle = "tower" | "raised-bed";
