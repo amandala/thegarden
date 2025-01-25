@@ -1,6 +1,14 @@
-export type SproutEvent = {
+export type CellEvent = {
   cell: string;
+  type: "sprout" | "failure" | "transplant";
+};
+
+export type SproutEvent = CellEvent & {
   dateSprouted: Date;
+};
+
+export type FailedEvent = CellEvent & {
+  failureType: "germination" | "transplant";
 };
 
 export type GerminationTimeframeDates = {

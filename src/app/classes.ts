@@ -4,6 +4,7 @@ import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
   SproutEvent,
+  FailedEvent,
 } from "./types";
 
 export class Garden {
@@ -47,6 +48,7 @@ export class Plant {
   dateSprouted?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
   germinationDates?: GerminationTimeframeDates;
+  failedToSprout: boolean = false;
 
   constructor({
     name,
@@ -110,6 +112,12 @@ export class PlantingTray {
     else throw new Error(`Unable to find plant at ${cell}`);
   }
 
+  private setCellFailedToSprout(cell: string) {
+    const plant = this.getPlantByCell(cell);
+    if (plant) plant.failedToSprout = true;
+    else throw new Error(`Unable to find plant at ${cell}`);
+  }
+
   public plantSeed(plant: Plant) {
     this.plantings.push(plant);
   }
@@ -118,9 +126,18 @@ export class PlantingTray {
     return this.plantings;
   }
 
-  public recordSprouts(sproutEvents: Array<SproutEvent>) {
+  public recordCellEvents(sproutEvents: Array<SproutEvent | FailedEvent>) {
     sproutEvents.forEach((e) => {
-      this.setCellSprouted(e.cell, e.dateSprouted);
+      switch (e.type) {
+        case "sprout":
+          const sproutEvent = e as SproutEvent;
+          this.setCellSprouted(sproutEvent.cell, sproutEvent.dateSprouted);
+          break;
+        case "failure":
+          const failedEvent = e as FailedEvent;
+          this.setCellFailedToSprout(failedEvent.cell);
+          break;
+      }
     });
   }
 }

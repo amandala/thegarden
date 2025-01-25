@@ -12,6 +12,7 @@ import {
   SproutedOn,
 } from "../shared/PlantInfoLines";
 import GrowingSeedling from "../animations/GrowingSeedling";
+import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
 
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
@@ -32,6 +33,7 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
           <GerminationDates germDates={plant.germinationDates} />
         )}
         {plant.dateSprouted ? <GrowingSeedling /> : null}
+        {plant.failedToSprout ? <TombstonePokingOut /> : null}
       </div>
     </Link>
   );

@@ -172,21 +172,6 @@
   border-radius: 200px;
 }
 
-.cloudwrapperThree .cloud {
-  width: 300px;
-  height: 90px;
-}
-
-.cloudwrapperThree .cloud:before {
-  width: 150px;
-  height: 120px;
-}
-
-.cloudwrapperThree .cloud:after {
-  width: 180px;
-  height: 180px;
-}
-
 .cloud:before,
 .cloud:after {
   content: "";
