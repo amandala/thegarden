@@ -15,6 +15,7 @@ import {
 import GrowingSeedling from "../animations/GrowingSeedling";
 import { daysSinceSprouted, fetcher } from "@/app/lib/helpers";
 import useSWR from "swr";
+import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
 
 export const PlantInfoCard = ({ id }: { id: string }) => {
   const { data } = useSWR(`../api/garden/plant/${id}`, fetcher, {});
@@ -44,7 +45,10 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
             />
           )}
           {plant.germinationDates && !plant.dateSprouted && (
-            <GerminationDates germDates={plant.germinationDates} />
+            <GerminationDates
+              germDates={plant.germinationDates}
+              failedToSprout={plant.failedToSprout}
+            />
           )}
           {plant.germinationTimeframe && (
             <GerminationNumDays germDays={plant.germinationTimeframe} />
@@ -57,6 +61,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
           )}
         </div>
         {plant.dateSprouted && <GrowingSeedling />}
+        {plant.failedToSprout && <TombstonePokingOut />}
       </div>
     );
 };

@@ -28,9 +28,13 @@ export const SproutedDays = ({
 
 export const GerminationDates = ({
   germDates,
+  failedToSprout,
 }: {
   germDates: GerminationTimeframeDates;
+  failedToSprout?: boolean;
 }) => {
+  if (failedToSprout) return <p>Failed to sprout</p>;
+
   const daysDiff = daysDifference(germDates.startDate);
 
   const text = (() => {

@@ -30,7 +30,10 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         <PlantedDate date={plant.datePlanted} />
         {plant.dateSprouted && <SproutedOn dateSprouted={plant.dateSprouted} />}
         {plant.germinationDates && !plant.dateSprouted && (
-          <GerminationDates germDates={plant.germinationDates} />
+          <GerminationDates
+            germDates={plant.germinationDates}
+            failedToSprout={plant.failedToSprout}
+          />
         )}
         {plant.dateSprouted ? <GrowingSeedling /> : null}
         {plant.failedToSprout ? <TombstonePokingOut /> : null}
