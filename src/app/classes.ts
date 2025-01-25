@@ -1,4 +1,5 @@
-import { calculateGerminationTimeframe } from "./helpers";
+import { calculateGerminationTimeframe } from "@/app/lib/helpers";
+
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,

@@ -4,7 +4,7 @@ import {
   daysDifference,
   daysBetween,
   isToday,
-} from "../app/helpers";
+} from "@/app/lib/helpers";
 
 describe("Helpers", () => {
   describe("dateInFuture", () => {

@@ -13,9 +13,8 @@ import {
   SproutedOn,
 } from "../shared/PlantInfoLines";
 import GrowingSeedling from "../animations/GrowingSeedling";
-import { daysSinceSprouted } from "@/app/helpers";
+import { daysSinceSprouted, fetcher } from "@/app/lib/helpers";
 import useSWR from "swr";
-import { fetcher } from "@/app/lib/api";
 
 export const PlantInfoCard = ({ id }: { id: string }) => {
   const { data } = useSWR(`../api/garden/plant/${id}`, fetcher, {});

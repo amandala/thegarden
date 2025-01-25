@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { PlantCell } from "./PlantCell";
 
 import styles from "./PlantingTray.module.css";
-import { fetcher } from "@/app/lib/api";
+import { fetcher } from "@/app/lib/helpers";
 import { Plant } from "@/app/classes";
 
 export const PlantingTray = () => {
