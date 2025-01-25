@@ -18,9 +18,9 @@
 
 .Tombstone {
   width: 20px;
-  background: gray;
+  background: darkgray;
   border-radius: 10px 10px 0 0;
-  border: 2px solid darkgray;
+  border: 2px solid gray;
   position: relative;
   bottom: 0;
   right: 20px;
