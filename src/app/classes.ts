@@ -6,36 +6,40 @@ import {
   SproutEvent,
   FailedEvent,
 } from "./types";
+import { gardenEvents } from "./events";
 
 export class Garden {
-  id: string;
-  plantingTrays: Array<PlantingTray>;
-  plants: Array<Plant>;
+  readonly id: string;
+  readonly plantingTrays: Array<PlantingTray>;
+  readonly plants: Array<Plant>;
 
-  constructor() {
+  constructor({ plants }: { plants: Array<Plant> }) {
     this.id = `garden-${new Date().getTime()}`;
     this.plantingTrays = [];
-    this.plants = [];
+
+    const plantList: Array<Plant> = [];
+    plants.forEach((p) => {
+      plantList.push(new Plant(p));
+    });
+
+    this.plants = plantList;
+
+    this.recordGardenEvents(gardenEvents);
   }
 
-  public addPlantToGarden({
-    plant,
-    trayId,
-  }: {
-    plant: Plant;
-    trayId?: string;
-  }) {
-    this.plants.push(plant);
-    if (trayId) {
-      const tray = this.getTrayById(trayId);
-      tray?.plantSeed(plant);
-    }
-  }
-
-  public getTrayById(trayId: string) {
-    const tray = this.plantingTrays.find((tray) => tray.id === trayId);
-    if (tray) return tray;
-    else throw new Error(`Unable to find tray with id: ${trayId}`);
+  private recordGardenEvents(plantEvents: Array<SproutEvent | FailedEvent>) {
+    plantEvents.forEach((e) => {
+      const plant = this.plants.find((p) => p.id === e.plantId);
+      switch (e.type) {
+        case "sprout":
+          const sproutEvent = e as SproutEvent;
+          plant?.setSprouted(sproutEvent.dateSprouted);
+          break;
+        case "failure":
+          plant?.setFailedToSprout();
+          break;
+      }
+    });
   }
 }
 
@@ -43,24 +47,32 @@ export class Plant {
   readonly id: string;
   readonly name: string;
   datePlanted: Date;
-  cell?: string;
+  location: {
+    type: "tray" | "graveyard";
+    locationId?: string;
+  };
   variant?: string;
   dateSprouted?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
   germinationDates?: GerminationTimeframeDates;
-  failedToSprout: boolean = false;
+  failedToSprout?: boolean = false;
 
   constructor({
+    id,
     name,
     datePlanted,
-    cell,
     variant,
     dateSprouted,
     germinationTimeframe,
+    location,
   }: {
+    id: string;
     name: string;
     datePlanted: Date;
-    cell: string;
+    location: {
+      type: "tray" | "graveyard";
+      locationId?: string;
+    };
     variant?: string;
     dateSprouted?: Date;
     germinationTimeframe?: {
@@ -68,10 +80,11 @@ export class Plant {
       rangeEndDays: number;
     };
   }) {
-    this.id = `${cell}-${name.slice(0, 3)}-${datePlanted.getDay()}`;
+    this.id = id;
     this.name = name;
     this.datePlanted = datePlanted;
-    this.cell = cell;
+    this.location = location;
+
     this.variant = variant;
     this.dateSprouted = dateSprouted;
 
@@ -87,6 +100,28 @@ export class Plant {
       });
     }
   }
+
+  public setSprouted(dateSprouted: Date) {
+    this.dateSprouted = dateSprouted;
+  }
+
+  public setFailedToSprout() {
+    this.failedToSprout = true;
+  }
+
+  public recordPlantEvents(plantEvents: Array<SproutEvent | FailedEvent>) {
+    plantEvents.forEach((e) => {
+      switch (e.type) {
+        case "sprout":
+          const sproutEvent = e as SproutEvent;
+          this.setSprouted(sproutEvent.dateSprouted);
+          break;
+        case "failure":
+          this.setFailedToSprout();
+          break;
+      }
+    });
+  }
 }
 
 export class PlantingTray {
@@ -98,46 +133,11 @@ export class PlantingTray {
     this.plantings = [];
   }
 
-  public getPlantByCell(cell: string): Plant | undefined {
-    return this.plantings.find((planting) => planting.cell === cell);
-  }
-
-  public getPlantById(id: string): Plant | undefined {
-    return this.plantings.find((planting) => planting.id === id);
-  }
-
-  private setCellSprouted(cell: string, dateSprouted: Date) {
-    const plant = this.getPlantByCell(cell);
-    if (plant) plant.dateSprouted = dateSprouted;
-    else throw new Error(`Unable to find plant at ${cell}`);
-  }
-
-  private setCellFailedToSprout(cell: string) {
-    const plant = this.getPlantByCell(cell);
-    if (plant) plant.failedToSprout = true;
-    else throw new Error(`Unable to find plant at ${cell}`);
-  }
-
   public plantSeed(plant: Plant) {
     this.plantings.push(plant);
   }
 
   public getPlants() {
     return this.plantings;
-  }
-
-  public recordCellEvents(sproutEvents: Array<SproutEvent | FailedEvent>) {
-    sproutEvents.forEach((e) => {
-      switch (e.type) {
-        case "sprout":
-          const sproutEvent = e as SproutEvent;
-          this.setCellSprouted(sproutEvent.cell, sproutEvent.dateSprouted);
-          break;
-        case "failure":
-          const failedEvent = e as FailedEvent;
-          this.setCellFailedToSprout(failedEvent.cell);
-          break;
-      }
-    });
   }
 }

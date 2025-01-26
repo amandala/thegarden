@@ -16,10 +16,20 @@ import GrowingSeedling from "../animations/GrowingSeedling";
 import { daysSinceSprouted, fetcher } from "@/app/lib/helpers";
 import useSWR from "swr";
 import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
+import { useEffect, useState } from "react";
+import { Plant } from "@/app/classes";
 
 export const PlantInfoCard = ({ id }: { id: string }) => {
+  const [plant, setPlant] = useState<Plant | null>(null);
   const { data } = useSWR(`../api/garden/plant/${id}`, fetcher, {});
-  const plant = data?.plant;
+
+  useEffect(() => {
+    if (data) {
+      const plant = new Plant(data.plant);
+      plant.recordPlantEvents(data.events);
+      setPlant(plant);
+    }
+  }, [data]);
 
   if (plant)
     return (
@@ -34,7 +44,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
         <div className={styles.Section}>
           <h4>Planting Info</h4>
           <PlantedDate date={plant.datePlanted} />
-          <PlantLocation cell={plant.cell} />
+          <PlantLocation cell={plant.location.locationId} />
         </div>
         <div className={styles.Section}>
           <h4>Germination Info</h4>

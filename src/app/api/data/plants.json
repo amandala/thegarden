@@ -1,0 +1,192 @@
+[
+  {
+    "id": "1A-ore-11",
+    "name": "Oregano",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 7,
+      "rangeEndDays": 21
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "1A"
+    }
+  },
+  {
+    "id": "1B-ros-11",
+    "name": "Rosemary",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 7,
+      "rangeEndDays": 28
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "1B"
+    }
+  },
+  {
+    "id": "1C-bas-11",
+    "name": "Basil",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 7,
+      "rangeEndDays": 21
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "1C"
+    }
+  },
+  {
+    "id": "1D-thy-11",
+    "name": "Thyme",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 7,
+      "rangeEndDays": 21
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "1D"
+    }
+  },
+  {
+    "id": "2A-bel-11",
+    "name": "Bell Pepper",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Orange",
+    "germinationTimeframe": {
+      "rangeStartDays": 10,
+      "rangeEndDays": 12
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "2A"
+    }
+  },
+  {
+    "id": "2B-jal-11",
+    "name": "Jalapeño",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Black Magic",
+    "germinationTimeframe": {
+      "rangeStartDays": 8,
+      "rangeEndDays": 18
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "2B"
+    }
+  },
+  {
+    "id": "2C-hab-11",
+    "name": "Habanero Pepper",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 10,
+      "rangeEndDays": 12
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "2C"
+    }
+  },
+  {
+    "id": "2D-tom-11",
+    "name": "Tomato",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Yellow Pear",
+    "germinationTimeframe": {
+      "rangeStartDays": 7,
+      "rangeEndDays": 14
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "2D"
+    }
+  },
+  {
+    "id": "3A-rai-11",
+    "name": "Rainbow Chard",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "location": {
+      "type": "tray",
+      "locationId": "3A"
+    }
+  },
+  {
+    "id": "3B-rai-11",
+    "name": "Rainbow Kale",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "location": {
+      "type": "tray",
+      "locationId": "3B"
+    }
+  },
+  {
+    "id": "3C-let-11",
+    "name": "Lettuce",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Bibb",
+    "location": {
+      "type": "tray",
+      "locationId": "3C"
+    }
+  },
+  {
+    "id": "3D-let-11",
+    "name": "Lettuce",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Gourmet Leaf",
+    "location": {
+      "type": "tray",
+      "locationId": "3D"
+    }
+  },
+  {
+    "id": "4A-aru-11",
+    "name": "Arugula",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "location": {
+      "type": "tray",
+      "locationId": "4A"
+    }
+  },
+  {
+    "id": "4B-bea-11",
+    "name": "Bean",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "variant": "Bush",
+    "germinationTimeframe": {
+      "rangeStartDays": 6,
+      "rangeEndDays": 14
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "4B"
+    }
+  },
+  {
+    "id": "4C-pac-11",
+    "name": "Pac Choi",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "germinationTimeframe": {
+      "rangeStartDays": 5,
+      "rangeEndDays": 10
+    },
+    "location": {
+      "type": "tray",
+      "locationId": "4C"
+    }
+  },
+  {
+    "id": "4D-egg-11",
+    "name": "Eggplant",
+    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "location": {
+      "type": "tray",
+      "locationId": "4D"
+    }
+  }
+]
