@@ -2,7 +2,7 @@
   {
     "id": "1A-ore-11",
     "name": "Oregano",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 7,
       "rangeEndDays": 21
@@ -15,7 +15,7 @@
   {
     "id": "1B-ros-11",
     "name": "Rosemary",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 7,
       "rangeEndDays": 28
@@ -28,7 +28,7 @@
   {
     "id": "1C-bas-11",
     "name": "Basil",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 7,
       "rangeEndDays": 21
@@ -41,7 +41,7 @@
   {
     "id": "1D-thy-11",
     "name": "Thyme",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 7,
       "rangeEndDays": 21
@@ -54,7 +54,7 @@
   {
     "id": "2A-bel-11",
     "name": "Bell Pepper",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Orange",
     "germinationTimeframe": {
       "rangeStartDays": 10,
@@ -68,7 +68,7 @@
   {
     "id": "2B-jal-11",
     "name": "Jalapeño",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Black Magic",
     "germinationTimeframe": {
       "rangeStartDays": 8,
@@ -82,7 +82,7 @@
   {
     "id": "2C-hab-11",
     "name": "Habanero Pepper",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 10,
       "rangeEndDays": 12
@@ -95,7 +95,7 @@
   {
     "id": "2D-tom-11",
     "name": "Tomato",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Yellow Pear",
     "germinationTimeframe": {
       "rangeStartDays": 7,
@@ -109,7 +109,7 @@
   {
     "id": "3A-rai-11",
     "name": "Rainbow Chard",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "location": {
       "type": "tray",
       "locationId": "3A"
@@ -118,7 +118,7 @@
   {
     "id": "3B-rai-11",
     "name": "Rainbow Kale",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "location": {
       "type": "tray",
       "locationId": "3B"
@@ -127,7 +127,7 @@
   {
     "id": "3C-let-11",
     "name": "Lettuce",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Bibb",
     "location": {
       "type": "tray",
@@ -137,7 +137,7 @@
   {
     "id": "3D-let-11",
     "name": "Lettuce",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Gourmet Leaf",
     "location": {
       "type": "tray",
@@ -147,7 +147,7 @@
   {
     "id": "4A-aru-11",
     "name": "Arugula",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "location": {
       "type": "tray",
       "locationId": "4A"
@@ -156,7 +156,7 @@
   {
     "id": "4B-bea-11",
     "name": "Bean",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "variant": "Bush",
     "germinationTimeframe": {
       "rangeStartDays": 6,
@@ -170,7 +170,7 @@
   {
     "id": "4C-pac-11",
     "name": "Pac Choi",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "germinationTimeframe": {
       "rangeStartDays": 5,
       "rangeEndDays": 10
@@ -183,7 +183,7 @@
   {
     "id": "4D-egg-11",
     "name": "Eggplant",
-    "datePlanted": "2025-01-11T00:00:00.000Z",
+    "datePlanted": "2025-01-11T18:00:00.000Z",
     "location": {
       "type": "tray",
       "locationId": "4D"

@@ -1,6 +1,5 @@
 export type PlantEvent = {
   plantId: string;
-  cell: string;
   type: "sprout" | "failure" | "transplant";
 };
 
