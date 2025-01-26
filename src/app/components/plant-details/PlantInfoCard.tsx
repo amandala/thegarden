@@ -15,7 +15,7 @@ import {
 import GrowingSeedling from "../animations/GrowingSeedling";
 import { daysSinceSprouted, fetcher } from "@/app/lib/helpers";
 import useSWR from "swr";
-import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
+import Tombstone from "@/app/components/animations/Tombstone";
 import { useEffect, useState } from "react";
 import { Plant } from "@/app/classes";
 
@@ -71,7 +71,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
           )}
         </div>
         {plant.dateSprouted && <GrowingSeedling />}
-        {plant.failedToSprout && <TombstonePokingOut />}
+        {plant.failedToSprout && <Tombstone />}
       </div>
     );
 };

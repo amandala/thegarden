@@ -12,7 +12,7 @@ import {
   SproutedOn,
 } from "../shared/PlantInfoLines";
 import GrowingSeedling from "../animations/GrowingSeedling";
-import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
+import Tombstone from "@/app/components/animations/Tombstone";
 
 export const EmptyPlantCell = () => {
   return <div className={cx(styles.Plant, styles.Empty)}></div>;
@@ -40,7 +40,7 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
           />
         )}
         {plant.dateSprouted ? <GrowingSeedling /> : null}
-        {plant.failedToSprout ? <TombstonePokingOut /> : null}
+        {plant.failedToSprout ? <Tombstone /> : null}
       </div>
     </Link>
   );

@@ -33,9 +33,7 @@ export default function RootLayout({
         <div className={styles.page}>
           <SkyBackground />
           <main className={styles.main}>{children}</main>
-          <footer className={styles.footer}></footer>
         </div>
-
         <SpeedInsights />
         <Analytics />
       </body>

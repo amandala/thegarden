@@ -5,6 +5,7 @@ import { PlantingTray } from "./PlantingTray";
 import { Garden } from "@/app/classes";
 import { useEffect, useState } from "react";
 
+import styles from "./Garden.module.css";
 export const TheGarden = () => {
   const [garden, setGarden] = useState<Garden | null>(null);
   const { data } = useSWR("../api/garden/plants", fetcher);
@@ -18,8 +19,11 @@ export const TheGarden = () => {
   if (!garden) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className={styles.Garden}>
       <PlantingTray cells={garden.plantingTrays[0].cells} />
+      {/* <Graveyard
+        plants={garden.plants.filter((plant) => plant.failedToSprout)}
+      /> */}
     </div>
   );
 };

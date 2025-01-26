@@ -1,0 +1,50 @@
+.Graveyard {
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.Grave {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}
+
+.GraveyardGround {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, #013220, #014421);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 98;
+}
+
+.Hill {
+  width: 100%;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  bottom: -50px;
+}
+
+.Hill:nth-child(2) {
+  width: 100%;
+  height: 120px;
+  bottom: -60px;
+}
+
+.Hill:nth-child(3) {
+  width: 100%;
+  height: 110px;
+  bottom: -55px;
+}
+
+.Hill:nth-child(4) {
+  width: 100%;
+  height: 130px;
+  bottom: -65px;
+}
