@@ -14,6 +14,10 @@ import {
 import GrowingSeedling from "../animations/GrowingSeedling";
 import TombstonePokingOut from "@/app/animations/TombstonePokingOut";
 
+export const EmptyPlantCell = () => {
+  return <div className={cx(styles.Plant, styles.Empty)}></div>;
+};
+
 export const PlantCell = ({ plant }: { plant: Plant }) => {
   return (
     <Link href={`/plant/${plant.id}`}>

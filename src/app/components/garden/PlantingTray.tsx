@@ -1,4 +1,4 @@
-import { PlantCell } from "./PlantCell";
+import { EmptyPlantCell, PlantCell } from "./PlantCell";
 
 import styles from "./PlantingTray.module.css";
 import { Plant, PlantingTrayCells } from "@/app/classes";
@@ -11,7 +11,7 @@ export const PlantingTray = ({ cells }: { cells: PlantingTrayCells }) => {
           cell ? (
             <PlantCell key={key} plant={cell} />
           ) : (
-            <div key={key}>EMPTY</div>
+            <EmptyPlantCell key={key} />
           )
         )}
       </div>
