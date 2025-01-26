@@ -16,9 +16,10 @@ export const TheGarden = () => {
   }, [data]);
 
   if (!garden) return <div>Loading...</div>;
+
   return (
     <div>
-      <PlantingTray plants={garden?.plants} />
+      <PlantingTray cells={garden.plantingTrays[0].cells} />
     </div>
   );
 };

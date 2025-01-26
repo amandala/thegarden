@@ -24,6 +24,10 @@ export class Garden {
 
     this.plants = plantList;
 
+    const plantsInTray = this.plants.filter((p) => p.location.type === "tray");
+
+    this.plantingTrays.push(new PlantingTray({ plants: plantsInTray }));
+
     this.recordGardenEvents(gardenEvents);
   }
 
@@ -124,20 +128,67 @@ export class Plant {
   }
 }
 
+export type PlantingTrayCells = Record<
+  | "1A"
+  | "1B"
+  | "1C"
+  | "1D"
+  | "2A"
+  | "2B"
+  | "2C"
+  | "2D"
+  | "3A"
+  | "3B"
+  | "3C"
+  | "3D"
+  | "4A"
+  | "4B"
+  | "4C"
+  | "4D",
+  Plant | null
+>;
+
 export class PlantingTray {
   readonly id: string;
-  plantings: Array<Plant>;
+  cells: PlantingTrayCells;
 
-  constructor() {
+  constructor({ plants }: { plants: Array<Plant> }) {
     this.id = `tray-${new Date().getTime()}`;
-    this.plantings = [];
+    this.cells = {
+      "1A": null,
+      "1B": null,
+      "1C": null,
+      "1D": null,
+      "2A": null,
+      "2B": null,
+      "2C": null,
+      "2D": null,
+      "3A": null,
+      "3B": null,
+      "3C": null,
+      "3D": null,
+      "4A": null,
+      "4B": null,
+      "4C": null,
+      "4D": null,
+    };
+
+    plants.forEach((p) => {
+      if (p.location?.locationId) {
+        this.cells[p.location?.locationId as keyof PlantingTray["cells"]] = p;
+      }
+    });
   }
 
-  public plantSeed(plant: Plant) {
-    this.plantings.push(plant);
+  public addPlant(plant: Plant, cell: keyof PlantingTray["cells"]) {
+    this.cells[cell] = plant;
+  }
+
+  public removePlant(cell: keyof PlantingTray["cells"]) {
+    this.cells[cell] = null;
   }
 
   public getPlants() {
-    return this.plantings;
+    return this.cells;
   }
 }
