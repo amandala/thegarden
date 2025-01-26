@@ -6,6 +6,7 @@ import { Garden } from "@/app/classes";
 import { useEffect, useState } from "react";
 
 import styles from "./Garden.module.css";
+import { Graveyard } from "./Graveyard";
 export const TheGarden = () => {
   const [garden, setGarden] = useState<Garden | null>(null);
   const { data } = useSWR("../api/garden/plants", fetcher);
@@ -20,10 +21,10 @@ export const TheGarden = () => {
 
   return (
     <div className={styles.Garden}>
-      <PlantingTray cells={garden.plantingTrays[0].cells} />
-      {/* <Graveyard
+      <PlantingTray cells={garden.plantingTray.cells} />
+      <Graveyard
         plants={garden.plants.filter((plant) => plant.failedToSprout)}
-      /> */}
+      />
     </div>
   );
 };

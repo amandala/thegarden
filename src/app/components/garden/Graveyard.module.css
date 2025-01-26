@@ -2,49 +2,47 @@
   bottom: 0;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .Grave {
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 20;
+  z-index: 30;
 }
 
 .GraveyardGround {
-  width: 100%;
-  height: 100px;
-  background: linear-gradient(to top, #013220, #014421);
+  width: 100vw;
+  height: 20px;
+  background: linear-gradient(to bottom, #058c5b, #038844);
   position: absolute;
   bottom: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  z-index: 98;
+  left: 0;
 }
 
-.Hill {
-  width: 100%;
-  height: 100px;
+.GraveyardGround::after {
+  content: "";
+  position: absolute;
+  bottom: 20px; /* Adjust based on the height of GraveyardGround */
+  left: 0;
+  width: 100vw;
+  height: 50px; /* Adjust height for the rolling hill effect */
+  background-color: #058c5b;
   border-radius: 50%;
-  position: relative;
-  bottom: -50px;
+  bottom: -40%;
+  z-index: -1;
 }
 
-.Hill:nth-child(2) {
-  width: 100%;
-  height: 120px;
-  bottom: -60px;
-}
+@media (prefers-color-scheme: dark) {
+  .GraveyardGround {
+    background: linear-gradient(to top, #013220, #014421);
+  }
 
-.Hill:nth-child(3) {
-  width: 100%;
-  height: 110px;
-  bottom: -55px;
-}
-
-.Hill:nth-child(4) {
-  width: 100%;
-  height: 130px;
-  bottom: -65px;
+  .GraveyardGround::after {
+    background-color: #014421;
+  }
 }

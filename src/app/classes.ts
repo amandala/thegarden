@@ -10,12 +10,11 @@ import { gardenEvents } from "./events";
 
 export class Garden {
   readonly id: string;
-  readonly plantingTrays: Array<PlantingTray>;
+  readonly plantingTray: PlantingTray;
   readonly plants: Array<Plant>;
 
   constructor({ plants }: { plants: Array<Plant> }) {
     this.id = `garden-${new Date().getTime()}`;
-    this.plantingTrays = [];
 
     const plantList: Array<Plant> = [];
     plants.forEach((p) => {
@@ -23,12 +22,11 @@ export class Garden {
     });
 
     this.plants = plantList;
+    this.recordGardenEvents(gardenEvents);
 
     const plantsInTray = this.plants.filter((p) => p.location.type === "tray");
 
-    this.plantingTrays.push(new PlantingTray({ plants: plantsInTray }));
-
-    this.recordGardenEvents(gardenEvents);
+    this.plantingTray = new PlantingTray({ plants: plantsInTray });
   }
 
   private recordGardenEvents(plantEvents: Array<SproutEvent | FailedEvent>) {
@@ -86,11 +84,11 @@ export class Plant {
   }) {
     this.id = id;
     this.name = name;
-    this.datePlanted = datePlanted;
+    this.datePlanted = new Date(datePlanted);
     this.location = location;
 
     this.variant = variant;
-    this.dateSprouted = dateSprouted;
+    this.dateSprouted = dateSprouted ? new Date(dateSprouted) : undefined;
 
     if (germinationTimeframe) {
       this.germinationTimeframe = {
@@ -100,17 +98,18 @@ export class Plant {
 
       this.germinationDates = calculateGerminationTimeframe({
         germinationTimeframe,
-        datePlanted,
+        datePlanted: this.datePlanted,
       });
     }
   }
 
   public setSprouted(dateSprouted: Date) {
-    this.dateSprouted = dateSprouted;
+    this.dateSprouted = new Date(dateSprouted);
   }
 
   public setFailedToSprout() {
     this.failedToSprout = true;
+    this.location = { type: "graveyard" };
   }
 
   public recordPlantEvents(plantEvents: Array<SproutEvent | FailedEvent>) {

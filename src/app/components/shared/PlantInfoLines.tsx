@@ -62,8 +62,20 @@ export const GerminationNumDays = ({
   );
 };
 
-export const PlantLocation = ({ cell }: { cell?: string }) => {
-  return <p>Located in {cell}</p>;
+export const PlantLocation = ({
+  location,
+}: {
+  location: {
+    type: "tray" | "graveyard";
+    locationId?: string;
+  };
+}) => {
+  return (
+    <p>
+      Located in {location.type.toLocaleUpperCase()}
+      {location.locationId && ` ${location.locationId}`}
+    </p>
+  );
 };
 
 export const PlantAge = ({ daysAlive }: { daysAlive: number | undefined }) => {

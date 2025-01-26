@@ -44,7 +44,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
         <div className={styles.Section}>
           <h4>Planting Info</h4>
           <PlantedDate date={plant.datePlanted} />
-          <PlantLocation cell={plant.location.locationId} />
+          <PlantLocation location={plant.location} />
         </div>
         <div className={styles.Section}>
           <h4>Germination Info</h4>

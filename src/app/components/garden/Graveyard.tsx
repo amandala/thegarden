@@ -15,12 +15,7 @@ export const Graveyard = ({ plants }: { plants: Array<Plant> }) => {
           </div>
         </Link>
       ))}
-      <div className={styles.GraveyardGround}>
-        <div className={styles.Hill}></div>
-        <div className={styles.Hill}></div>
-        <div className={styles.Hill}></div>
-        <div className={styles.Hill}></div>
-      </div>
+      <div className={styles.GraveyardGround}></div>
     </div>
   );
 };
