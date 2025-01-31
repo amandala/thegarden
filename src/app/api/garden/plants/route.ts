@@ -1,32 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { neon } from "@neondatabase/serverless";
-
-interface DbPlant {
-  id: number;
-  name: string;
-  date_planted: string;
-  germination_range_start_days: number | null;
-  germination_range_end_days: number | null;
-  location_type: string;
-  location_id: number;
-  variant: string | null;
-}
-
-interface PlantData {
-  id: number;
-  name: string;
-  datePlanted: string;
-  germinationTimeframe: {
-    rangeStartDays: number | null;
-    rangeEndDays: number | null;
-  };
-  location: {
-    type: string;
-    locationId: number;
-  };
-  variant: string | null;
-}
+import { DbPlant, PlantData } from "../../types";
 
 const mapPlantData = (dbPlants: DbPlant[]): PlantData[] => {
   return dbPlants.map((plant) => {
