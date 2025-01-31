@@ -11,10 +11,12 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "classnames": "^2.5.1",
     "next": "15.1.5",
+    "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swr": "^2.3.0"
