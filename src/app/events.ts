@@ -43,8 +43,8 @@ export const gardenEvents: Array<SproutEvent | FailedEvent> = [
   },
   {
     plantId: "2A-bel-11",
-    type: "failure",
-    failureType: "germination",
+    type: "sprout",
+    dateSprouted: new Date(2025, 0, 28),
   },
   {
     plantId: "2C-hab-11",
@@ -55,5 +55,10 @@ export const gardenEvents: Array<SproutEvent | FailedEvent> = [
     plantId: "4B-bea-11",
     type: "failure",
     failureType: "germination",
+  },
+  {
+    plantId: "1C-bas-11",
+    type: "sprout",
+    dateSprouted: new Date(2025, 0, 28),
   },
 ];
