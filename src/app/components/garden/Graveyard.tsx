@@ -5,7 +5,6 @@ import styles from "./Graveyard.module.css";
 import Link from "next/link";
 
 export const Graveyard = ({ plants }: { plants: Array<Plant> }) => {
-  console.log(plants);
   return (
     <div className={styles.Graveyard}>
       {plants.map((plant) => (

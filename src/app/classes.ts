@@ -128,22 +128,22 @@ export class Plant {
 }
 
 export type PlantingTrayCells = Record<
-  | "1A"
-  | "1B"
-  | "1C"
-  | "1D"
-  | "2A"
-  | "2B"
-  | "2C"
-  | "2D"
-  | "3A"
-  | "3B"
-  | "3C"
-  | "3D"
-  | "4A"
-  | "4B"
-  | "4C"
-  | "4D",
+  | "tray_1A"
+  | "tray_1B"
+  | "tray_1C"
+  | "tray_1D"
+  | "tray_2A"
+  | "tray_2B"
+  | "tray_2C"
+  | "tray_2D"
+  | "tray_3A"
+  | "tray_3B"
+  | "tray_3C"
+  | "tray_3D"
+  | "tray_4A"
+  | "tray_4B"
+  | "tray_4C"
+  | "tray_4D",
   Plant | null
 >;
 
@@ -154,22 +154,22 @@ export class PlantingTray {
   constructor({ plants }: { plants: Array<Plant> }) {
     this.id = `tray-${new Date().getTime()}`;
     this.cells = {
-      "1A": null,
-      "1B": null,
-      "1C": null,
-      "1D": null,
-      "2A": null,
-      "2B": null,
-      "2C": null,
-      "2D": null,
-      "3A": null,
-      "3B": null,
-      "3C": null,
-      "3D": null,
-      "4A": null,
-      "4B": null,
-      "4C": null,
-      "4D": null,
+      tray_1A: null,
+      tray_1B: null,
+      tray_1C: null,
+      tray_1D: null,
+      tray_2A: null,
+      tray_2B: null,
+      tray_2C: null,
+      tray_2D: null,
+      tray_3A: null,
+      tray_3B: null,
+      tray_3C: null,
+      tray_3D: null,
+      tray_4A: null,
+      tray_4B: null,
+      tray_4C: null,
+      tray_4D: null,
     };
 
     plants.forEach((p) => {
