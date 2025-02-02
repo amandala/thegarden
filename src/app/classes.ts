@@ -5,12 +5,15 @@ import {
   GerminationTimeframeNumDays,
   SproutEvent,
   FailedEvent,
+  LocationType,
+  TransplantEvent,
 } from "./types";
 import { gardenEvents } from "./events";
 
 export class Garden {
   readonly id: string;
   readonly plantingTray: PlantingTray;
+  readonly towerGarden: TowerGarden;
   readonly plants: Array<Plant>;
 
   constructor({ plants }: { plants: Array<Plant> }) {
@@ -24,12 +27,22 @@ export class Garden {
     this.plants = plantList;
     this.recordGardenEvents(gardenEvents);
 
-    const plantsInTray = this.plants.filter((p) => p.location.type === "tray");
+    const plantsInTray = this.plants.filter(
+      (p) => p.location.type === LocationType.TRAY
+    );
+
+    const plantsInTower = this.plants.filter(
+      (p) => p.location.type === LocationType.TOWER
+    );
+    console.log("plants in tower", plantsInTower);
 
     this.plantingTray = new PlantingTray({ plants: plantsInTray });
+    this.towerGarden = new TowerGarden({ plants: plantsInTower });
   }
 
-  private recordGardenEvents(plantEvents: Array<SproutEvent | FailedEvent>) {
+  private recordGardenEvents(
+    plantEvents: Array<SproutEvent | FailedEvent | TransplantEvent>
+  ) {
     plantEvents.forEach((e) => {
       const plant = this.plants.find((p) => p.id === e.plantId);
       switch (e.type) {
@@ -39,6 +52,10 @@ export class Garden {
           break;
         case "failure":
           plant?.setFailedToSprout();
+          break;
+        case "transplant":
+          const transplantEvent = e as TransplantEvent;
+          plant?.setMovedToTower(transplantEvent.newLocationId);
           break;
       }
     });
@@ -50,7 +67,7 @@ export class Plant {
   readonly name: string;
   datePlanted: Date;
   location: {
-    type: "tray" | "graveyard";
+    type: LocationType;
     locationId?: string;
   };
   variant?: string;
@@ -72,7 +89,7 @@ export class Plant {
     name: string;
     datePlanted: Date;
     location: {
-      type: "tray" | "graveyard";
+      type: LocationType;
       locationId?: string;
     };
     variant?: string;
@@ -104,15 +121,29 @@ export class Plant {
   }
 
   public setSprouted(dateSprouted: Date) {
+    // TODO: this is only updating the local object
     this.dateSprouted = new Date(dateSprouted);
   }
 
   public setFailedToSprout() {
     this.failedToSprout = true;
-    this.location = { type: "graveyard" };
+    // TODO: this is only updating the local object
+    this.location = { type: LocationType.GRAVEYARD, locationId: "graveyard" };
   }
 
-  public recordPlantEvents(plantEvents: Array<SproutEvent | FailedEvent>) {
+  public setMovedToTower(newLocationId: string) {
+    console.log("new location id", newLocationId);
+
+    // TODO: Check if newLocationId is a valid key in TowerGarden cells
+    this.location = {
+      type: LocationType.TOWER,
+      locationId: newLocationId,
+    };
+  }
+
+  public recordPlantEvents(
+    plantEvents: Array<SproutEvent | FailedEvent | TransplantEvent>
+  ) {
     plantEvents.forEach((e) => {
       switch (e.type) {
         case "sprout":
@@ -121,6 +152,10 @@ export class Plant {
           break;
         case "failure":
           this.setFailedToSprout();
+          break;
+        case "transplant":
+          const transplantEvent = e as TransplantEvent;
+          this.setMovedToTower(transplantEvent.newLocationId);
           break;
       }
     });
@@ -189,5 +224,66 @@ export class PlantingTray {
 
   public getPlants() {
     return this.cells;
+  }
+}
+
+export type TowerGardenCells = Record<
+  | "tower_1A"
+  | "tower_1B"
+  | "tower_1C"
+  | "tower_1D"
+  | "tower_2A"
+  | "tower_2B"
+  | "tower_2C"
+  | "tower_2D"
+  | "tower_3A"
+  | "tower_3B"
+  | "tower_3C"
+  | "tower_3D"
+  | "tower_4A"
+  | "tower_4B"
+  | "tower_4C"
+  | "tower_4D"
+  | "tower_5A"
+  | "tower_5B"
+  | "tower_5C"
+  | "tower_5D",
+  Plant | null
+>;
+
+export class TowerGarden {
+  readonly id: string;
+  cells: TowerGardenCells;
+
+  constructor({ plants }: { plants: Array<Plant> }) {
+    this.id = `tray-${new Date().getTime()}`;
+    this.cells = {
+      tower_5A: null,
+      tower_5B: null,
+      tower_5C: null,
+      tower_5D: null,
+      tower_4A: null,
+      tower_4B: null,
+      tower_4C: null,
+      tower_4D: null,
+      tower_3A: null,
+      tower_3B: null,
+      tower_3C: null,
+      tower_3D: null,
+      tower_2A: null,
+      tower_2B: null,
+      tower_2C: null,
+      tower_2D: null,
+      tower_1A: null,
+      tower_1B: null,
+      tower_1C: null,
+      tower_1D: null,
+    };
+
+    plants.forEach((p) => {
+      if (p.location?.locationId) {
+        this.cells[p.location?.locationId as keyof TowerGarden["cells"]] = p;
+      }
+    });
   }
 }

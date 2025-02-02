@@ -1,6 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Welcome to Amanda's Garden
 
-## Getting Started
+This is a silly little project to track the progress of my seedlings journey from Planting Tray to Tower Garden.
+
+## How it works
+
+DB Tables
+
+- Plants
+- Locations
+- Events (WIP)
+
+Plants are created in the Postgress DB and include their planting date and the ID of their initial location.
+
+The client fetches the plants, joining their location data, and generates a Garden with 1 Planting Tray, 1 Tower Garden, and 1 Graveyard by calculating the current status of the Garden by applying events to the Plants.
+
+Events are stored in the client (working on moving them to DB) and are of one of the following types:
+
+- Sprout Event: When a seed has sprouted
+- Failure Event: When a seed failed to sprout within it's given germination timeframe
+- Transplant Event: When a seedling is moved from the Planting Tray to the Tower Garden
+
+NOTE: The Plant records in the database only know about their initial inception (location, planted date). All the manipulations to the plant data fetched from the DB are done in the client at this time.
+
+Features in Consideration:
+
+- Events in DB
+- Seed Event to record datePlanted and Planting Tray Location on a Plant
+- Ability to calculate the state of the Garden on any date
+- CLI for adding new Plant to DB
+- CLI for adding new events to DB
+
+## Local Development
 
 First, run the development server:
 
@@ -15,22 +45,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

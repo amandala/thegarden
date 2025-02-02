@@ -8,11 +8,13 @@ import styles from "./PlantCell.module.css";
 import Link from "next/link";
 import {
   GerminationDates,
+  PlantAge,
   PlantedDate,
   SproutedOn,
 } from "../shared/PlantInfoLines";
 import GrowingSeedling from "../animations/GrowingSeedling";
 import Tombstone from "@/app/components/animations/Tombstone";
+import { daysSinceSprouted } from "@/app/lib/helpers";
 
 export const EmptyPlantCell = () => {
   return <div className={cx(styles.Plant, styles.Empty)}></div>;
@@ -40,6 +42,9 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
           />
         )}
         {plant.dateSprouted ? <GrowingSeedling /> : null}
+        {plant.dateSprouted && (
+          <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
+        )}
         {plant.failedToSprout ? <Tombstone /> : null}
       </div>
     </Link>
