@@ -10,6 +10,7 @@ import {
 import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
+  LocationType,
 } from "../../types";
 
 export const PlantedDate = ({ date }: { date: Date }) => {
@@ -66,7 +67,7 @@ export const PlantLocation = ({
   location,
 }: {
   location: {
-    type: "tray" | "graveyard";
+    type: LocationType;
     locationId?: string;
   };
 }) => {

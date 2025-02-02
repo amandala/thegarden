@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import styles from "./Garden.module.css";
 import { Graveyard } from "./Graveyard";
+import { LocationType } from "@/app/types";
 export const TheGarden = () => {
   const [garden, setGarden] = useState<Garden | null>(null);
   const { data } = useSWR("../api/garden/plants", fetcher);
@@ -21,9 +22,19 @@ export const TheGarden = () => {
 
   return (
     <div className={styles.Garden}>
-      <PlantingTray cells={garden.plantingTray.cells} />
+      <div className={styles.Section}>
+        <h2 className={styles.Heading}>Tower Garden View</h2>
+        <PlantingTray tower cells={garden.towerGarden.cells} />
+      </div>
+      <div className={styles.Section}>
+        <h2 className={styles.Heading}>Planting Tray View</h2>
+        <PlantingTray cells={garden.plantingTray.cells} />
+      </div>
+
       <Graveyard
-        plants={garden.plants.filter((plant) => plant.failedToSprout)}
+        plants={garden.plants.filter(
+          (plant) => plant.location.type === LocationType.GRAVEYARD
+        )}
       />
     </div>
   );

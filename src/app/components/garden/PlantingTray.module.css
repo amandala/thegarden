@@ -23,4 +23,8 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-flow: column;
   }
+
+  .TowerGrid {
+    grid-auto-flow: row;
+  }
 }
