@@ -3,7 +3,7 @@ import { gardenEvents } from "@/app/events";
 import { neon } from "@neondatabase/serverless";
 import { DbPlant } from "@/app/api/types";
 import { mapPlantData } from "@/app/api/helpers/mapPlantData";
-import { selectPlantWithLocationJoin } from "@/app/api/queries";
+import { selectPlantById } from "@/app/api/queries";
 
 export async function GET(
   _request: Request,
@@ -14,7 +14,7 @@ export async function GET(
 
   const sql = neon(`${process.env.DATABASE_URL}`);
 
-  const dbPlants = await sql(selectPlantWithLocationJoin(id))
+  const dbPlants = await sql(selectPlantById(id))
     .then(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (data: Record<string, any>[]) => {
