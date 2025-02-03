@@ -1,20 +1,32 @@
-export type PlantEvent = {
+type PlantEvent = {
   plantId: string;
   eventDate: Date;
 };
 
+export enum PlantEventTypes {
+  SEED = "seed",
+  SPROUT = "sprout",
+  FAILURE = "failure",
+  TRANSPLANT = "transplant",
+}
+
+export type SeedEvent = {
+  type: PlantEventTypes.SEED;
+};
+
 export type SproutEvent = PlantEvent & {
-  type: "sprout";
+  type: PlantEventTypes.SPROUT;
+  // TODO: use PlantEvent eventDate instead of dup date
   dateSprouted: Date;
 };
 
 export type FailedEvent = PlantEvent & {
-  type: "failure";
+  type: PlantEventTypes.FAILURE;
   failureType: "germination" | "transplant";
 };
 
 export type TransplantEvent = PlantEvent & {
-  type: "transplant";
+  type: PlantEventTypes.TRANSPLANT;
   newLocationId: string;
 };
 

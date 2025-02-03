@@ -7,6 +7,7 @@ import {
   FailedEvent,
   LocationType,
   TransplantEvent,
+  PlantEventTypes,
 } from "./types";
 import { gardenEvents } from "./events";
 
@@ -46,14 +47,14 @@ export class Garden {
     plantEvents.forEach((e) => {
       const plant = this.plants.find((p) => p.id === e.plantId);
       switch (e.type) {
-        case "sprout":
+        case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
           plant?.setSprouted(sproutEvent.dateSprouted);
           break;
-        case "failure":
+        case PlantEventTypes.FAILURE:
           plant?.setFailedToSprout();
           break;
-        case "transplant":
+        case PlantEventTypes.TRANSPLANT:
           const transplantEvent = e as TransplantEvent;
           plant?.setMovedToTower(transplantEvent.newLocationId);
           break;
@@ -146,14 +147,14 @@ export class Plant {
   ) {
     plantEvents.forEach((e) => {
       switch (e.type) {
-        case "sprout":
+        case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
           this.setSprouted(sproutEvent.dateSprouted);
           break;
-        case "failure":
+        case PlantEventTypes.FAILURE:
           this.setFailedToSprout();
           break;
-        case "transplant":
+        case PlantEventTypes.TRANSPLANT:
           const transplantEvent = e as TransplantEvent;
           this.setMovedToTower(transplantEvent.newLocationId);
           break;
