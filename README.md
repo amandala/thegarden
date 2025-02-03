@@ -6,13 +6,24 @@ This is a silly little project to track the progress of my seedlings journey fro
 
 DB Tables
 
+- Seeds
 - Plants
 - Locations
 - Events (WIP)
 
-Plants are created in the Postgress DB and include their planting date and the ID of their initial location.
+Seeds represent a package of seeds. Each plant has a reference to a seed.
 
-The client fetches the plants, joining their location data, and generates a Garden with 1 Planting Tray, 1 Tower Garden, and 1 Graveyard by calculating the current status of the Garden by applying events to the Plants.
+Locations represent a place where a plant can live. A plant can be moved between locations throughout its lifecycle via events.
+
+Current Locations:
+
+- Planting Tray (4x4 grid)
+- Tower Garden (4x5 tower "grid")
+- Graveyard
+
+Plants include their planting date, the id of the seed, and the id of their initial location.
+
+The client fetches the plants, joining their location and seed data, and generates a Garden with 1 Planting Tray, 1 Tower Garden, and 1 Graveyard calculating the current status of the Garden by applying events to the Plants.
 
 Events are stored in the client (working on moving them to DB) and are of one of the following types:
 
@@ -25,6 +36,7 @@ NOTE: The Plant records in the database only know about their initial inception 
 Features in Consideration:
 
 - Events in DB
+- Planted Event to hold planting date
 - Seed Event to record datePlanted and Planting Tray Location on a Plant
 - Ability to calculate the state of the Garden on any date
 - CLI for adding new Plant to DB
