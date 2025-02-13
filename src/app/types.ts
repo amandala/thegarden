@@ -16,8 +16,6 @@ export type SeedEvent = {
 
 export type SproutEvent = PlantEvent & {
   type: PlantEventTypes.SPROUT;
-  // TODO: use PlantEvent eventDate instead of dup date
-  dateSprouted: Date;
 };
 
 export type FailedEvent = PlantEvent & {

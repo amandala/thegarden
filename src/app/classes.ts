@@ -49,7 +49,7 @@ export class Garden {
       switch (e.type) {
         case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
-          plant?.setSprouted(sproutEvent.dateSprouted);
+          plant?.setSprouted(sproutEvent.eventDate);
           break;
         case PlantEventTypes.FAILURE:
           plant?.setFailedToSprout();
@@ -82,7 +82,6 @@ export class Plant {
     name,
     datePlanted,
     variant,
-    dateSprouted,
     germinationTimeframe,
     location,
   }: {
@@ -94,7 +93,6 @@ export class Plant {
       locationId?: string;
     };
     variant?: string;
-    dateSprouted?: Date;
     germinationTimeframe?: {
       rangeStartDays: number;
       rangeEndDays: number;
@@ -106,7 +104,6 @@ export class Plant {
     this.location = location;
 
     this.variant = variant;
-    this.dateSprouted = dateSprouted ? new Date(dateSprouted) : undefined;
 
     if (germinationTimeframe) {
       this.germinationTimeframe = {
@@ -149,7 +146,7 @@ export class Plant {
       switch (e.type) {
         case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
-          this.setSprouted(sproutEvent.dateSprouted);
+          this.setSprouted(sproutEvent.eventDate);
           break;
         case PlantEventTypes.FAILURE:
           this.setFailedToSprout();

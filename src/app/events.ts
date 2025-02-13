@@ -9,56 +9,47 @@ export const gardenEvents: Array<SproutEvent | FailedEvent | TransplantEvent> =
   [
     {
       plantId: "4A-aru-11",
-      dateSprouted: new Date(2025, 0, 14),
       eventDate: new Date(2025, 0, 14),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "4C-pac-11",
-      dateSprouted: new Date(2025, 0, 14),
       eventDate: new Date(2025, 0, 14),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "3B-rai-11",
-      dateSprouted: new Date(2025, 0, 14),
       eventDate: new Date(2025, 0, 14),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "3C-let-11",
-      dateSprouted: new Date(2025, 0, 14),
       eventDate: new Date(2025, 0, 14),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "3D-let-11",
-      dateSprouted: new Date(2025, 0, 14),
       eventDate: new Date(2025, 0, 14),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "1A-ore-11",
-      dateSprouted: new Date(2025, 0, 17),
       eventDate: new Date(2025, 0, 17),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "1D-thy-11",
-      dateSprouted: new Date(2025, 0, 17),
       eventDate: new Date(2025, 0, 17),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "2D-tom-11",
-      dateSprouted: new Date(2025, 0, 20),
       eventDate: new Date(2025, 0, 20),
       type: PlantEventTypes.SPROUT,
     },
     {
       plantId: "2A-bel-11",
       type: PlantEventTypes.SPROUT,
-      dateSprouted: new Date(2025, 0, 28),
       eventDate: new Date(2025, 0, 28),
     },
     {
@@ -76,7 +67,6 @@ export const gardenEvents: Array<SproutEvent | FailedEvent | TransplantEvent> =
     {
       plantId: "1C-bas-11",
       type: PlantEventTypes.SPROUT,
-      dateSprouted: new Date(2025, 0, 28),
       eventDate: new Date(2025, 0, 28),
     },
     {
@@ -161,7 +151,6 @@ export const gardenEvents: Array<SproutEvent | FailedEvent | TransplantEvent> =
     {
       plantId: "PLT1A-cha-02",
       type: PlantEventTypes.SPROUT,
-      dateSprouted: new Date(2025, 1, 10),
       eventDate: new Date(2025, 1, 10),
     },
   ];
