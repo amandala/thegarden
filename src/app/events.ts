@@ -153,4 +153,10 @@ export const gardenEvents: Array<SproutEvent | FailedEvent | TransplantEvent> =
       type: PlantEventTypes.SPROUT,
       eventDate: new Date(2025, 1, 10),
     },
+    {
+      plantId: "1B-ros-11",
+      type: PlantEventTypes.FAILURE,
+      failureType: "germination",
+      eventDate: new Date(2025, 1, 10),
+    },
   ];
