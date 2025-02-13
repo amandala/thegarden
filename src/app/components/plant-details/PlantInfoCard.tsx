@@ -60,7 +60,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
               failedToSprout={plant.failedToSprout}
             />
           )}
-          {plant.germinationTimeframe && (
+          {!!plant.germinationTimeframe?.rangeStartDays && (
             <GerminationNumDays germDays={plant.germinationTimeframe} />
           )}
           {plant.dateSprouted && (
