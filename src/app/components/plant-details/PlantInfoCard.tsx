@@ -18,9 +18,12 @@ import useSWR from "swr";
 import Tombstone from "@/app/components/animations/Tombstone";
 import { useEffect, useState } from "react";
 import { Plant } from "@/app/classes";
+import { PlantEvent } from "@/app/types";
+import EventsTable from "./EventsTable";
 
 export const PlantInfoCard = ({ id }: { id: string }) => {
   const [plant, setPlant] = useState<Plant | null>(null);
+  const [events, setEvents] = useState<Array<PlantEvent>>([]);
   const { data } = useSWR(`../api/garden/plant/${id}`, fetcher, {});
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
       const plant = new Plant(data.plant);
       plant.recordPlantEvents(data.events);
       setPlant(plant);
+      setEvents(data.events);
     }
   }, [data]);
 
@@ -71,6 +75,10 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
           {plant.dateSprouted && (
             <SproutedOn dateSprouted={plant.dateSprouted} />
           )}
+        </div>
+        <div className={styles.Section}>
+          <h4>Event Ledger</h4>
+          <EventsTable events={events} />
         </div>
         {plant.dateSprouted && <GrowingSeedling />}
         {plant.failedToSprout && <Tombstone />}

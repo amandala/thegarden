@@ -1,10 +1,3 @@
-type PlantEvent = {
-  //TODO: make id mandatory once DB data done
-  id?: string;
-  plantId: string;
-  eventDate: Date;
-};
-
 export enum PlantEventTypes {
   SEED = "seed",
   SPROUT = "sprout",
@@ -12,24 +5,42 @@ export enum PlantEventTypes {
   TRANSPLANT = "transplant",
 }
 
-export type SeedEvent = PlantEvent & {
+type BasePlantEvent = {
+  id: string;
+  plantId: string;
+  eventDate: Date;
+};
+
+export type SeedEvent = BasePlantEvent & {
   type: PlantEventTypes.SEED;
   newLocationId: string;
 };
 
-export type SproutEvent = PlantEvent & {
+export type SproutEvent = BasePlantEvent & {
   type: PlantEventTypes.SPROUT;
 };
 
-export type FailedEvent = PlantEvent & {
+export type FailedEvent = BasePlantEvent & {
   type: PlantEventTypes.FAILURE;
   failureType: "germination" | "transplant";
 };
 
-export type TransplantEvent = PlantEvent & {
+export type TransplantEvent = BasePlantEvent & {
   type: PlantEventTypes.TRANSPLANT;
   newLocationId: string;
 };
+
+export const isLocationBasedEvent = (
+  event: PlantEvent
+): event is SeedEvent | TransplantEvent => {
+  return "newLocationId" in event;
+};
+
+export type PlantEvent =
+  | SeedEvent
+  | SproutEvent
+  | TransplantEvent
+  | FailedEvent;
 
 export type GerminationTimeframeDates = {
   startDate: Date;

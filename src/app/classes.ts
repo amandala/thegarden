@@ -4,12 +4,12 @@ import {
   GerminationTimeframeDates,
   GerminationTimeframeNumDays,
   SproutEvent,
-  FailedEvent,
   LocationType,
   TransplantEvent,
   PlantEventTypes,
   Location,
   SeedEvent,
+  PlantEvent,
 } from "./types";
 
 export class Garden {
@@ -23,7 +23,7 @@ export class Garden {
     events,
   }: {
     plants: Array<Plant>;
-    events: Array<SeedEvent | SproutEvent | TransplantEvent | FailedEvent>;
+    events: Array<PlantEvent>;
   }) {
     this.id = `garden-${new Date().getTime()}`;
 
@@ -47,9 +47,7 @@ export class Garden {
     this.towerGarden = new TowerGarden({ plants: plantsInTower });
   }
 
-  private recordGardenEvents(
-    plantEvents: Array<SeedEvent | SproutEvent | FailedEvent | TransplantEvent>
-  ) {
+  private recordGardenEvents(plantEvents: Array<PlantEvent>) {
     plantEvents.forEach((e) => {
       const plant = this.plants.find((p) => p.id === e.plantId);
 
@@ -129,7 +127,6 @@ export class Plant {
 
   public setFailedToSprout() {
     this.failedToSprout = true;
-
     this.location = { type: LocationType.GRAVEYARD, locationId: "graveyard" };
   }
 
@@ -141,9 +138,7 @@ export class Plant {
     };
   }
 
-  public recordPlantEvents(
-    plantEvents: Array<SeedEvent | SproutEvent | FailedEvent | TransplantEvent>
-  ) {
+  public recordPlantEvents(plantEvents: Array<PlantEvent>) {
     plantEvents.forEach((e) => {
       switch (e.type) {
         case PlantEventTypes.SEED:
