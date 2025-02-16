@@ -41,19 +41,21 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
         <h1>
           {plant.variant} {plant.name}
         </h1>
-        <div className={styles.Section}>
-          <h4>Planting Info</h4>
-          <PlantedDate date={plant.datePlanted} />
-          <PlantLocation location={plant.location} />
-        </div>
+        {plant.location && plant.datePlanted ? (
+          <div className={styles.Section}>
+            <h4>Planting Info</h4>
+            <PlantedDate date={plant.datePlanted} />
+            <PlantLocation location={plant.location} />
+          </div>
+        ) : null}
         <div className={styles.Section}>
           <h4>Germination Info</h4>
-          {plant.dateSprouted && (
+          {plant.dateSprouted && plant.datePlanted ? (
             <SproutedDays
               planted={plant.datePlanted}
               sprouted={plant.dateSprouted}
             />
-          )}
+          ) : null}
           {plant.germinationDates && !plant.dateSprouted && (
             <GerminationDates
               germDates={plant.germinationDates}

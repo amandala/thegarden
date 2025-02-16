@@ -1,3 +1,5 @@
+import { PlantEventTypes } from "../types";
+
 export interface DbPlant {
   id: number;
   name: string;
@@ -7,6 +9,15 @@ export interface DbPlant {
   location_type: string;
   location_id: number;
   variant: string | null;
+}
+
+export interface DBEvent {
+  id: string;
+  plant_id: string;
+  event_type: PlantEventTypes;
+  event_date: string;
+  event_message?: string;
+  new_location_id?: string;
 }
 
 export interface PlantData {
@@ -22,4 +33,13 @@ export interface PlantData {
     locationId: number;
   };
   variant: string | null;
+}
+
+export interface EventData {
+  id: string;
+  plantId: string;
+  eventDate: Date;
+  newLocationId?: string;
+  //TODO: type type :P
+  type: string;
 }
