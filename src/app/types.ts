@@ -1,4 +1,6 @@
 type PlantEvent = {
+  //TODO: make id mandatory once DB data done
+  id?: string;
   plantId: string;
   eventDate: Date;
 };
@@ -10,8 +12,9 @@ export enum PlantEventTypes {
   TRANSPLANT = "transplant",
 }
 
-export type SeedEvent = {
+export type SeedEvent = PlantEvent & {
   type: PlantEventTypes.SEED;
+  newLocationId: string;
 };
 
 export type SproutEvent = PlantEvent & {
@@ -44,3 +47,8 @@ export enum LocationType {
   GARDEN = "garden",
   GRAVEYARD = "graveyard",
 }
+
+export type Location = {
+  type: LocationType;
+  locationId: string;
+};

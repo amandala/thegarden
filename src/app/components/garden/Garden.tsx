@@ -14,7 +14,7 @@ export const TheGarden = () => {
 
   useEffect(() => {
     if (data) {
-      setGarden(new Garden({ plants: data.plants }));
+      setGarden(new Garden({ plants: data.plants, events: data.events }));
     }
   }, [data]);
 
@@ -33,7 +33,7 @@ export const TheGarden = () => {
 
       <Graveyard
         plants={garden.plants.filter(
-          (plant) => plant.location.type === LocationType.GRAVEYARD
+          (plant) => plant.location?.type === LocationType.GRAVEYARD
         )}
       />
     </div>

@@ -8,8 +8,9 @@ import {
   LocationType,
   TransplantEvent,
   PlantEventTypes,
+  Location,
+  SeedEvent,
 } from "./types";
-import { gardenEvents } from "./events";
 
 export class Garden {
   readonly id: string;
@@ -17,7 +18,13 @@ export class Garden {
   readonly towerGarden: TowerGarden;
   readonly plants: Array<Plant>;
 
-  constructor({ plants }: { plants: Array<Plant> }) {
+  constructor({
+    plants,
+    events,
+  }: {
+    plants: Array<Plant>;
+    events: Array<SeedEvent | SproutEvent | TransplantEvent | FailedEvent>;
+  }) {
     this.id = `garden-${new Date().getTime()}`;
 
     const plantList: Array<Plant> = [];
@@ -26,27 +33,31 @@ export class Garden {
     });
 
     this.plants = plantList;
-    this.recordGardenEvents(gardenEvents);
+    this.recordGardenEvents(events);
 
     const plantsInTray = this.plants.filter(
-      (p) => p.location.type === LocationType.TRAY
+      (p) => p.location?.type === LocationType.TRAY
     );
 
     const plantsInTower = this.plants.filter(
-      (p) => p.location.type === LocationType.TOWER
+      (p) => p.location?.type === LocationType.TOWER
     );
-    console.log("plants in tower", plantsInTower);
 
     this.plantingTray = new PlantingTray({ plants: plantsInTray });
     this.towerGarden = new TowerGarden({ plants: plantsInTower });
   }
 
   private recordGardenEvents(
-    plantEvents: Array<SproutEvent | FailedEvent | TransplantEvent>
+    plantEvents: Array<SeedEvent | SproutEvent | FailedEvent | TransplantEvent>
   ) {
     plantEvents.forEach((e) => {
       const plant = this.plants.find((p) => p.id === e.plantId);
+
       switch (e.type) {
+        case PlantEventTypes.SEED:
+          const seedEvent = e as SeedEvent;
+          plant?.setSeeded(seedEvent.eventDate, seedEvent.newLocationId);
+          break;
         case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
           plant?.setSprouted(sproutEvent.eventDate);
@@ -66,11 +77,8 @@ export class Garden {
 export class Plant {
   readonly id: string;
   readonly name: string;
-  datePlanted: Date;
-  location: {
-    type: LocationType;
-    locationId?: string;
-  };
+  datePlanted?: Date;
+  location?: Location;
   variant?: string;
   dateSprouted?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
@@ -80,18 +88,11 @@ export class Plant {
   constructor({
     id,
     name,
-    datePlanted,
     variant,
     germinationTimeframe,
-    location,
   }: {
     id: string;
     name: string;
-    datePlanted: Date;
-    location: {
-      type: LocationType;
-      locationId?: string;
-    };
     variant?: string;
     germinationTimeframe?: {
       rangeStartDays: number;
@@ -100,9 +101,6 @@ export class Plant {
   }) {
     this.id = id;
     this.name = name;
-    this.datePlanted = new Date(datePlanted);
-    this.location = location;
-
     this.variant = variant;
 
     if (germinationTimeframe) {
@@ -110,28 +108,32 @@ export class Plant {
         rangeStartDays: germinationTimeframe.rangeStartDays,
         rangeEndDays: germinationTimeframe.rangeEndDays,
       };
-
-      this.germinationDates = calculateGerminationTimeframe({
-        germinationTimeframe,
-        datePlanted: this.datePlanted,
-      });
     }
   }
 
+  // todo: update string to LocationId type
+  public setSeeded(dateSeeded: Date, locationId: string) {
+    this.datePlanted = new Date(dateSeeded);
+    this.location = { type: LocationType.TRAY, locationId };
+
+    if (this.germinationTimeframe)
+      this.germinationDates = calculateGerminationTimeframe({
+        germinationTimeframe: this.germinationTimeframe,
+        datePlanted: this.datePlanted,
+      });
+  }
+
   public setSprouted(dateSprouted: Date) {
-    // TODO: this is only updating the local object
     this.dateSprouted = new Date(dateSprouted);
   }
 
   public setFailedToSprout() {
     this.failedToSprout = true;
-    // TODO: this is only updating the local object
+
     this.location = { type: LocationType.GRAVEYARD, locationId: "graveyard" };
   }
 
   public setMovedToTower(newLocationId: string) {
-    console.log("new location id", newLocationId);
-
     // TODO: Check if newLocationId is a valid key in TowerGarden cells
     this.location = {
       type: LocationType.TOWER,
@@ -140,10 +142,14 @@ export class Plant {
   }
 
   public recordPlantEvents(
-    plantEvents: Array<SproutEvent | FailedEvent | TransplantEvent>
+    plantEvents: Array<SeedEvent | SproutEvent | FailedEvent | TransplantEvent>
   ) {
     plantEvents.forEach((e) => {
       switch (e.type) {
+        case PlantEventTypes.SEED:
+          const seedEvent = e as SeedEvent;
+          this.setSeeded(seedEvent.eventDate, seedEvent.newLocationId);
+          break;
         case PlantEventTypes.SPROUT:
           const sproutEvent = e as SproutEvent;
           this.setSprouted(sproutEvent.eventDate);

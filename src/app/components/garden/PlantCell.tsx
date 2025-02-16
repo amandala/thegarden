@@ -32,8 +32,10 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         <h3 className={styles.Name}>
           {plant.variant?.toString()} {plant.name.toString()}{" "}
         </h3>
-        <h4 className={styles.Cell}>Cell: {plant.location.locationId}</h4>
-        <PlantedDate date={plant.datePlanted} />
+        {plant.location && (
+          <h4 className={styles.Cell}>Cell: {plant.location.locationId}</h4>
+        )}
+        {plant.datePlanted && <PlantedDate date={plant.datePlanted} />}
         {plant.dateSprouted && <SproutedOn dateSprouted={plant.dateSprouted} />}
         {plant.germinationDates && !plant.dateSprouted && (
           <GerminationDates
