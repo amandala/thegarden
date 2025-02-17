@@ -1,0 +1,16 @@
+.Row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 150px 100px 100px 100px 100px 100px;
+  border-bottom: 1px solid black;
+  gap: 10px;
+  padding-block: 10px;
+}
+
+.Bold {
+  font-weight: bold;
+}
+
+.End {
+  justify-self: end;
+}

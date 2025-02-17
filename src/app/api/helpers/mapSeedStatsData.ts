@@ -8,8 +8,8 @@ export const mapSeedStatsData = (dbEvents: DbSeedStat[]): SeedStat[] => {
       plantedCount: event.planted_count,
       failureCount: event.failure_count,
       towerTransplantCount: event.tower_transplant_count,
-      successRate: event.success_rate,
-      failureRate: event.failure_rate,
+      successRate: ~~event.success_rate,
+      failureRate: ~~event.failure_rate,
     };
   });
 };
