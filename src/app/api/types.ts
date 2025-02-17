@@ -35,3 +35,23 @@ export interface EventData {
   //TODO: type type :P
   type: string;
 }
+
+export interface DbSeedStat {
+  seed_id: string;
+  seed_name: string;
+  planted_count: number;
+  failure_count: number;
+  tower_transplant_count: number;
+  success_rate: number;
+  failure_rate: number;
+}
+
+export interface SeedStat {
+  seedId: string;
+  seedName: string;
+  plantedCount: number;
+  failureCount: number;
+  towerTransplantCount: number;
+  successRate: number;
+  failureRate: number;
+}

@@ -3,13 +3,13 @@ import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 import { DBEvent, DbPlant } from "../../types";
 import { mapPlantData } from "../../helpers/mapPlantData";
-import { selectAllEvents, selectPlants } from "../../queries";
+import { selectAllEvents, selectAllPlants } from "../../queries";
 import { mapEventData } from "../../helpers/mapEventData";
 
 export async function GET() {
   const sql = neon(`${process.env.DATABASE_URL}`);
 
-  const dbPlants = await sql(selectPlants)
+  const dbPlants = await sql(selectAllPlants)
     .then(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (data: Record<string, any>[]) => {
