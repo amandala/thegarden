@@ -19,7 +19,7 @@ import Tombstone from "@/app/components/animations/Tombstone";
 import { useEffect, useState } from "react";
 import { Plant } from "@/app/classes";
 import { PlantEvent } from "@/app/types";
-import EventsTable from "./EventsTable";
+import EventsList from "./EventsList";
 
 export const PlantInfoCard = ({ id }: { id: string }) => {
   const [plant, setPlant] = useState<Plant | null>(null);
@@ -54,12 +54,12 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
         ) : null}
         <div className={styles.Section}>
           <h4>Germination Info</h4>
-          {plant.dateSprouted && plant.datePlanted ? (
-            <SproutedDays
-              planted={plant.datePlanted}
-              sprouted={plant.dateSprouted}
-            />
-          ) : null}
+          {plant.dateSprouted && (
+            <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
+          )}
+          {plant.dateSprouted && (
+            <SproutedOn dateSprouted={plant.dateSprouted} />
+          )}
           {plant.germinationDates && !plant.dateSprouted && (
             <GerminationDates
               germDates={plant.germinationDates}
@@ -69,16 +69,16 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
           {!!plant.germinationTimeframe?.rangeStartDays && (
             <GerminationNumDays germDays={plant.germinationTimeframe} />
           )}
-          {plant.dateSprouted && (
-            <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
-          )}
-          {plant.dateSprouted && (
-            <SproutedOn dateSprouted={plant.dateSprouted} />
-          )}
+          {plant.dateSprouted && plant.datePlanted ? (
+            <SproutedDays
+              planted={plant.datePlanted}
+              sprouted={plant.dateSprouted}
+            />
+          ) : null}
         </div>
         <div className={styles.Section}>
           <h4>Event Ledger</h4>
-          <EventsTable events={events} />
+          <EventsList events={events} />
         </div>
         {plant.dateSprouted && <GrowingSeedling />}
         {plant.failedToSprout && <Tombstone />}

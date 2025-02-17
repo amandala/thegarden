@@ -4,7 +4,7 @@ import styles from "@/app/layout.module.css";
 import { SkyBackground } from "@/app/components/animations/SkyBackground";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Dancing_Script } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,6 +15,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  weight: "500",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable}`}
+      >
         <div className={styles.page}>
           <SkyBackground />
           <main className={styles.main}>{children}</main>

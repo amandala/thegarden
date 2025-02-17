@@ -23,6 +23,7 @@ export type SproutEvent = BasePlantEvent & {
 export type FailedEvent = BasePlantEvent & {
   type: PlantEventTypes.FAILURE;
   failureType: "germination" | "transplant";
+  newLocationId: string;
 };
 
 export type TransplantEvent = BasePlantEvent & {
