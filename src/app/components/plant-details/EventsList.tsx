@@ -7,23 +7,25 @@ const generateLedgerLine = (event: PlantEvent) => {
   switch (event.type) {
     case PlantEventTypes.SEED:
       return (
-        <p>{`Seeded in ${event.newLocationId.replace(
+        <p key={event.id}>{`Seeded in ${event.newLocationId.replace(
           "_",
           " "
         )} on ${getPrettyDate(event.eventDate)}`}</p>
       );
     case PlantEventTypes.SPROUT:
-      return <p>{`Sprouted on ${getPrettyDate(event.eventDate)}`}</p>;
+      return (
+        <p key={event.id}>{`Sprouted on ${getPrettyDate(event.eventDate)}`}</p>
+      );
     case PlantEventTypes.TRANSPLANT:
       return (
-        <p>{`Moved to ${event.newLocationId.replace(
+        <p key={event.id}>{`Moved to ${event.newLocationId.replace(
           "_",
           " "
         )} on ${getPrettyDate(event.eventDate)}`}</p>
       );
     case PlantEventTypes.FAILURE:
       return (
-        <p>{`Moved to ${event.newLocationId.replace(
+        <p key={event.id}>{`Moved to ${event.newLocationId.replace(
           "_",
           " "
         )} on ${getPrettyDate(event.eventDate)}`}</p>
