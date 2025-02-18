@@ -40,9 +40,10 @@ export interface DbSeedStat {
   seed_id: string;
   seed_name: string;
   planted_count: number;
+  sprout_count: number;
   failure_count: number;
   tower_transplant_count: number;
-  success_rate: number;
+  sprout_success_rate: number;
   failure_rate: number;
 }
 
@@ -50,8 +51,9 @@ export interface SeedStat {
   seedId: string;
   seedName: string;
   plantedCount: number;
+  sproutCount: number;
   failureCount: number;
   towerTransplantCount: number;
-  successRate: number;
+  sproutSuccessRate: number;
   failureRate: number;
 }

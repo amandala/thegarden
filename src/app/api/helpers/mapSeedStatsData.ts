@@ -6,9 +6,10 @@ export const mapSeedStatsData = (dbEvents: DbSeedStat[]): SeedStat[] => {
       seedId: event.seed_id,
       seedName: event.seed_name,
       plantedCount: event.planted_count,
+      sproutCount: event.sprout_count,
       failureCount: event.failure_count,
       towerTransplantCount: event.tower_transplant_count,
-      successRate: ~~event.success_rate,
+      sproutSuccessRate: ~~event.sprout_success_rate,
       failureRate: ~~event.failure_rate,
     };
   });

@@ -13,10 +13,11 @@ export const SeedStats = () => {
   if (isLoading) return "...loading";
   else
     return (
-      <div>
+      <div className={styles.Container}>
         <div className={cx(styles.Row, styles.Bold)}>
           <p>Seed Name</p>
           <p className={styles.End}>Seeded #</p>
+          <p className={styles.End}>Sprouted #</p>
           <p className={styles.End}>Failed #</p>
           <p className={styles.End}>Tower #</p>
           <p className={styles.End}>Success %</p>
@@ -26,9 +27,10 @@ export const SeedStats = () => {
           <div key={stat.seedId} className={styles.Row}>
             <span>{stat.seedName}</span>
             <span className={styles.End}>{stat.plantedCount}</span>
+            <span className={styles.End}>{stat.sproutCount}</span>
             <span className={styles.End}>{stat.failureCount}</span>
             <span className={styles.End}>{stat.towerTransplantCount}</span>
-            <span className={styles.End}>{stat.successRate}%</span>
+            <span className={styles.End}>{stat.sproutSuccessRate}%</span>
             <span className={styles.End}>{stat.failureRate}%</span>
           </div>
         ))}
