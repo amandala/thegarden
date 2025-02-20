@@ -1,11 +1,16 @@
 .Graveyard {
   bottom: 0;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
   position: fixed;
-  bottom: 0;
   left: 0;
   width: 100%;
+}
+
+.Graves {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: absolute;
+  left: 10%;
 }
 
 .Grave {

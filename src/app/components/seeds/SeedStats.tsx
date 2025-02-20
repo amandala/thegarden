@@ -10,7 +10,7 @@ import styles from "./SeedStats.module.css";
 export const SeedStats = () => {
   const { data, isLoading } = useSWR("../api/garden/seeds/stats", fetcher);
 
-  if (isLoading) return "...loading";
+  if (isLoading) return "calculating stats...";
   else
     return (
       <div className={styles.Container}>

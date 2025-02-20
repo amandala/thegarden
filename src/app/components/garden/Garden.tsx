@@ -18,7 +18,7 @@ export const TheGarden = () => {
     }
   }, [data]);
 
-  if (!garden) return <div>Loading...</div>;
+  if (!garden) return <div>checking notes...</div>;
 
   return (
     <div className={styles.Garden}>
