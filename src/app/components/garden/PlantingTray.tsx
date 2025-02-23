@@ -5,7 +5,6 @@ import { EmptyPlantCell, PlantCell } from "./PlantCell";
 import styles from "./PlantingTray.module.css";
 import { Plant, PlantingTrayCells, TowerGardenCells } from "@/app/classes";
 
-// TODO: rename to generic to use for Tower and Planting Tray
 export const PlantingTray = ({
   cells,
   tower,

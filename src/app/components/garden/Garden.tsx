@@ -12,6 +12,10 @@ export const TheGarden = () => {
   const [garden, setGarden] = useState<Garden | null>(null);
   const { data } = useSWR("../api/garden/plants", fetcher);
 
+  const plantingTrayHasPlants = garden?.plantingTray?.cells
+    ? !Object.values(garden.plantingTray.cells).every((value) => value === null)
+    : false;
+
   useEffect(() => {
     if (data) {
       setGarden(new Garden({ plants: data.plants, events: data.events }));
@@ -26,10 +30,12 @@ export const TheGarden = () => {
         <h2 className={styles.Heading}>Tower Garden View</h2>
         <PlantingTray tower cells={garden.towerGarden.cells} />
       </div>
-      <div className={styles.Section}>
-        <h2 className={styles.Heading}>Planting Tray View</h2>
-        <PlantingTray cells={garden.plantingTray.cells} />
-      </div>
+      {plantingTrayHasPlants && (
+        <div className={styles.Section}>
+          <h2 className={styles.Heading}>Planting Tray View</h2>
+          <PlantingTray cells={garden.plantingTray.cells} />
+        </div>
+      )}
 
       <Graveyard
         plants={garden.plants.filter(
