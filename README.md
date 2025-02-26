@@ -1,6 +1,6 @@
 # Welcome to Amanda's Garden
 
-This is a silly little project to track the progress of my seedlings journey from Planting Tray to Tower Garden.
+This is a silly little project to track the progress of my seedlings journey from Planting Tray to Tower Garden to me and my Chicken's bellies.
 
 ## How it works
 
@@ -9,7 +9,7 @@ DB Tables
 - Seeds
 - Plants
 - Locations
-- Events (WIP)
+- Events 
 
 Seeds represent a package of seeds. Each plant has a reference to a seed.
 
@@ -27,18 +27,13 @@ The client fetches the plants, joining their location and seed data, and generat
 
 Events are stored in the client (working on moving them to DB) and are of one of the following types:
 
+- Plant Event: When a seed has been planted
 - Sprout Event: When a seed has sprouted
 - Failure Event: When a seed failed to sprout within it's given germination timeframe
 - Transplant Event: When a seedling is moved from the Planting Tray to the Tower Garden
 
-NOTE: The Plant records in the database only know about their initial inception (location, planted date). All the manipulations to the plant data fetched from the DB are done in the client at this time.
-
 Features in Consideration:
 
-- Events in DB
-- Planted Event to hold planting date
-- Seed Event to record datePlanted and Planting Tray Location on a Plant
-- Ability to calculate the state of the Garden on any date
 - CLI for adding new Plant to DB
 - CLI for adding new events to DB
 
