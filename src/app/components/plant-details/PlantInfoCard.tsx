@@ -55,7 +55,12 @@ export const PlantInfoCard = ({ id }: { id: string }) => {
         <div className={styles.Section}>
           <h4>Germination Info</h4>
           {plant.dateSprouted && (
-            <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
+            <PlantAge
+              daysAlive={daysSinceSprouted(
+                plant.dateSprouted,
+                plant.dateHarvested
+              )}
+            />
           )}
           {plant.dateSprouted && (
             <SproutedOn dateSprouted={plant.dateSprouted} />

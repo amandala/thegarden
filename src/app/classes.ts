@@ -67,6 +67,9 @@ export class Garden {
           const transplantEvent = e as TransplantEvent;
           plant?.setMovedToTower(transplantEvent.newLocationId);
           break;
+        case PlantEventTypes.HARVEST:
+          plant?.setHarvested(e.eventDate);
+          break;
       }
     });
   }
@@ -79,6 +82,7 @@ export class Plant {
   location?: Location;
   variant?: string;
   dateSprouted?: Date;
+  dateHarvested?: Date;
   germinationTimeframe?: GerminationTimeframeNumDays;
   germinationDates?: GerminationTimeframeDates;
   failedToSprout?: boolean = false;
@@ -138,6 +142,11 @@ export class Plant {
     };
   }
 
+  public setHarvested(date: Date) {
+    this.location = { type: LocationType.GRAVEYARD, locationId: "harvest" };
+    this.dateHarvested = date;
+  }
+
   public recordPlantEvents(plantEvents: Array<PlantEvent>) {
     plantEvents.forEach((e) => {
       switch (e.type) {
@@ -155,6 +164,9 @@ export class Plant {
         case PlantEventTypes.TRANSPLANT:
           const transplantEvent = e as TransplantEvent;
           this.setMovedToTower(transplantEvent.newLocationId);
+          break;
+        case PlantEventTypes.HARVEST:
+          this.setHarvested(e.eventDate);
           break;
       }
     });

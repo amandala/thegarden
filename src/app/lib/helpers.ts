@@ -5,8 +5,8 @@ import {
 
 export const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-export const daysSinceSprouted = (dateSprouted: Date) => {
-  return daysBetween(dateSprouted, new Date());
+export const daysSinceSprouted = (dateSprouted: Date, dateHarvested?: Date) => {
+  return daysBetween(dateSprouted, dateHarvested ? dateHarvested : new Date());
 };
 
 export const calculateGerminationTimeframe = ({
