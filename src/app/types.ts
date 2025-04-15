@@ -3,6 +3,7 @@ export enum PlantEventTypes {
   SPROUT = "sprout",
   FAILURE = "failure",
   TRANSPLANT = "transplant",
+  HARVEST = "harvest",
 }
 
 type BasePlantEvent = {
@@ -31,6 +32,10 @@ export type TransplantEvent = BasePlantEvent & {
   newLocationId: string;
 };
 
+export type HarvestEvent = BasePlantEvent & {
+  type: PlantEventTypes.HARVEST;
+};
+
 export const isLocationBasedEvent = (
   event: PlantEvent
 ): event is SeedEvent | TransplantEvent => {
@@ -41,7 +46,8 @@ export type PlantEvent =
   | SeedEvent
   | SproutEvent
   | TransplantEvent
-  | FailedEvent;
+  | FailedEvent
+  | HarvestEvent;
 
 export type GerminationTimeframeDates = {
   startDate: Date;

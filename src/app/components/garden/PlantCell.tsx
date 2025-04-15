@@ -45,7 +45,12 @@ export const PlantCell = ({ plant }: { plant: Plant }) => {
         )}
         {plant.dateSprouted ? <GrowingSeedling /> : null}
         {plant.dateSprouted && (
-          <PlantAge daysAlive={daysSinceSprouted(plant.dateSprouted)} />
+          <PlantAge
+            daysAlive={daysSinceSprouted(
+              plant.dateSprouted,
+              plant.dateHarvested
+            )}
+          />
         )}
         {plant.failedToSprout ? <Tombstone /> : null}
       </div>

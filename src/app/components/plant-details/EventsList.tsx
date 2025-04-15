@@ -30,6 +30,10 @@ const generateLedgerLine = (event: PlantEvent) => {
           " "
         )} on ${getPrettyDate(event.eventDate)}`}</p>
       );
+    case PlantEventTypes.HARVEST:
+      return (
+        <p key={event.id}>{`Harvested on ${getPrettyDate(event.eventDate)}`}</p>
+      );
     default:
       return <></>;
   }
